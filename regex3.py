@@ -24,4 +24,5 @@ regex1 = re.compile(regex1)
 
 testString = 'Last night, I got home around 10:03. What a crazy evening!'
 
+# Searches the string arg for our regex - [\d{2}:\d{2}]
 print(str(regex1.findall(testString)))
