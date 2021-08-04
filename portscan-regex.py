@@ -21,7 +21,7 @@ import socket
 protocolRegex = re.compile(r'[ftp{3}FTP{3}http{4}HTTP{4}ssh{3}SSH{3}]')
 
 sock1 = socket.socket()
-
+sock1.settimeout(10)
 sock1.connect(('192.168.1.215',22))
 
 serverBanner = str(sock1.recv(1024))
