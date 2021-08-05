@@ -13,6 +13,11 @@ Gonna leave this for now and go
 re-read some material on
 regex.
 
+This scripts only works incidentally.
+The regex will match anything
+specified in my expression; not the
+specific phone pattern that I want.
+
 [On the Web]
 github.com/user520/pyscripts
 brianc2788@gmail.com
