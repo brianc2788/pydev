@@ -1,5 +1,5 @@
 import testmod
 def main():
-    testmod.test()
+    testmod.status()
 if __name__ == '__main__':
         main()

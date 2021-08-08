@@ -9,5 +9,5 @@ A test module, which will just print something.
 brianc2788@gmail.com
 '''
 
-def test():
-	print("Module is working.")
+def status():
+	print("Module loaded.")
