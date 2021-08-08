@@ -39,4 +39,7 @@ out right before he got diagnosed and died of cancer.
 They sure are great, aren't they? lol. Even better; target my mom, his
 very, very estranged wife, and try to get money out of her.
 Fuck the Chiodo family, lol. Annoying, because I have to change my name.
+Sorry, but it's true. They are garbage and 'family' means shit to them.
+Look down on others who struggle while they have everything handed to
+them for free; never 'earned' fucking anything. losers... babies.
 '''
