@@ -12,6 +12,7 @@ e.g. '../.hiddenrc/'.
 Would like to display sizes in
 MB rather than bytes. An easy
 fix.
+-done
 
 brianc2788@gmail.com
 github.com/user5260/pyscripts
