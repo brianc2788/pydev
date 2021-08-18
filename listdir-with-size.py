@@ -19,8 +19,10 @@ github.com/user5260/pyscripts
 '''
 import os
 
+# total size; accumulated and printed at the end.
 sizeofcwd = 0
-itemCount = 0
+# number the 'items' (files/folders) in the dir.
+itemCount = 1
 
 for file in os.listdir(os.getcwd()):
     print(str(itemCount) + " " + file + ", " + str(os.path.getsize(os.path.join(os.getcwd(),file))) + ' bytes')

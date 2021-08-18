@@ -3,45 +3,37 @@
 [Description]
 Practicing regular expressions with Python.
 [Comments]
-After going back over the chapters on
-regular expressions ("Automate the Boring
-Stuff with Python"), my expression is
-working well. The only thing I might
-like to add is maybe seperating the
-parts of the email into regex groups.
-Other than that, [pretty] happy with
-the results.
-
-User is prompted to enter a string and
-the program will match any and all e-mail
-patterns and output it back to the user.
-
-This pattern accepts almost all symbols
-along with the usual alphanumeric chars.
-Sometimes can be a problem, for example
-if the email address is in parentheses,
-like "(email@address.com)", the first
-parentheses gets picked up. Some e-mail
-addresses can have these symbols, so I'm
-inclined to leave it as-is -- certain
-case uses will need some modification here.
+Copied the script i wrote on my
+phone (Qpython) because, I think that
+version is the most readable and has
+the best regex for emails. Prev version
+was verbose and not great overall.
 
 [Contact]
 brianc2788@gmail.com
+github.com/user5260
 '''
 import re
-# first attempt; didn't work at all, really.
-# re-read the regex chapter in 'Automate..'
-# rawExpr = r'[\w{.}@\w{.}.\D{.}]'
-# ^^Was trying to use the '.' as wildcard, but
-# didn't use it correctly.
-# The following comment regex works as well
-rawExpr = r'[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[comnet]{2,3}'
-#rawExpr = r'(\S+@\S+\.[comnet]{2,3})'
-emailRegex = re.compile(rawExpr)
 
-testStr = input('enter: ')
+emailRegex = re.compile(r'[a-zA-Z0-9_-]{4,20}@[a-zA-Z0-9_-]+\.[com|net|org|eu|ru|aus]{2,3}')
+str1 = 'something@something.com,another@thing.net,yetano@gmail.eu'
 
-for n in emailRegex.findall(testStr):
-    print('Found an e-mail address: '+n)
+print('''----------------------------------------
+[DESCRIPTION]
+Testing a regular expression for emails in a string.
+Note this expression itself does not include commas,
+which is why it works with a string of CSVs.
 
+[EXPRESSION]
+'''+str(emailRegex.pattern)+'''
+
+[TEST VARIABLES]
+'''+str(type(str1))+', '+str1+'''
+----------------------------------------
+
+[RESULTS]''')
+count = 1
+for n in emailRegex.findall(str1):
+    print(str(count)+'. '+n)
+    count += 1
+print('[EXITING...]--------------------')
