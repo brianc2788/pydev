@@ -4,15 +4,10 @@ dirSize.py
 Prints the total size of the
 current working directory and
 each of the files contained
-within it (seems to have a
-problem with hidden dirs,
-e.g. '../.hiddenrc/'.
-
-[Comments]
-Would like to display sizes in
-MB rather than bytes. An easy
-fix.
--done
+within it. Has problems if
+directory contains items
+that are not files or folders.
+i.e. symlinks
 
 brianc2788@gmail.com
 github.com/user5260/pyscripts
