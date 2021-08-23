@@ -17,7 +17,7 @@ ValidPath = False
 ValidFile = False
 while not ValidPath & ValidFile:
     txtPath = input('Enter the absolute path of your plaintext file: ')
-
+    
     if not os.path.isdir(os.path.dirname(txtPath)):
         print('invalid directory.')
         ValidPath = False
@@ -31,7 +31,8 @@ while not ValidPath & ValidFile:
             ValidFile = True
 
 txtFile = open(txtPath)
-# not gonna bother with isopen()
+# what's the python equivalent to is_open()?
+# file.closed()?
 
 txtContents = txtFile.read()
 txtFile.close()
