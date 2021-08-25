@@ -5,18 +5,7 @@ strip whitespace & newlines out of
 text files and copies the single-
 line string to a new, plaintext
 file.
-
-- asks the user for a path to a plain-text file.
-  absolute or relative paths will work.
-- after the inputted string checks out,
-  the program moves on to open and read the file.
-  if there is a problem with the path inputted,
-  the program will loop until satisfied or
-  the process is killed (e.g. SIGINT).
-- next, the program prints the string of
-  text gotten from the file (after closing it,
-  of course)
-
+leaving this as-is for reference.
 brianc2788@gmail.com
 github.com/user5260
 '''
