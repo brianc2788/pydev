@@ -5,7 +5,17 @@ strip whitespace & newlines out of
 text files and copies the single-
 line string to a new, plaintext
 file.
-leaving this as-is for reference.
+-issues with rewriting over existing
+ 'stripped-' files. I.e., if you run
+ this on 'file1.txt', it will create
+ 'stripped-file1.txt' but, if you
+ run it on 'file1.txt' again, it
+ will have a big problem with the
+ pre-existing file it's being asked
+ to write over. My b.
+-Otherwise, works pretty good and
+ i would rather do it over than
+ fix it.
 brianc2788@gmail.com
 github.com/user5260
 '''
