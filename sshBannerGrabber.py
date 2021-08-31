@@ -10,6 +10,11 @@ connects to and downloads
 the 'banner'.
 -added user input due to
  dynamic IP.
+ -TODO
+ -change to binary/exec
+ -flow control:
+  use argv instead of
+  input().
 -----------------
 '''
 import re
