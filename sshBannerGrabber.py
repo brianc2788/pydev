@@ -7,6 +7,8 @@ For now, it just connects to my
 raspberry pi, reads the banner,
 filters banner through a regular
 expression.
+-added user input due to
+ dynamic IP.
 -----------------
 '''
 import re
@@ -18,7 +20,7 @@ protocolRegex = re.compile(r'[ftp|FTP|https|HTTPS|ssh|SSH|mysql|MYSQL]{1,4}')
 sock1 = socket.socket()
 sock1.settimeout(10)
 
-target1 = '192.168.1.215'
+target1 = input('enter ipv4 address w/open ssh port: ')
 sshport = 22
 
 sock1.connect((target1,sshport))
