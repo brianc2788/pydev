@@ -1,12 +1,13 @@
 #! /usr/bin/env python3
 '''
-portscan-regex.py
+sshBannerGrabber.py
 -----------------
-This is incomplete.
-For now, it just connects to my
-raspberry pi, reads the banner,
-filters banner through a regular
-expression.
+incomplete.
+testing with my rpi4.
+for now, just
+creates a socket,
+connects to and downloads
+the 'banner'.
 -added user input due to
  dynamic IP.
 -----------------
