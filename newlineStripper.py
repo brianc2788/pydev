@@ -5,17 +5,16 @@ strip whitespace & newlines out of
 text files and copies the single-
 line string to a new, plaintext
 file.
--issues with rewriting over existing
- 'stripped-' files. I.e., if you run
- this on 'file1.txt', it will create
- 'stripped-file1.txt' but, if you
- run it on 'file1.txt' again, it
- will have a big problem with the
- pre-existing file it's being asked
- to write over. My b.
--Otherwise, works pretty good and
- i would rather do it over than
- fix it.
+-fixed most issues.
+ my goal was to just make this
+ script achieve desired results,
+ which is does, however sloppily.
+ also to fix any fatal bugs that
+ would cause python to crash;
+ those have all been resolved.
+ ugly under the hood, but a
+ smooth experience for the user.
+
 brianc2788@gmail.com
 github.com/user5260
 '''
@@ -59,9 +58,14 @@ for n in validChars:
 print('ORIGINAL:\n'+fullString+'\n--- END ORIGINAL ------------')
 print('RECOVERED:\n'+cutString+'\n--- END RECOVERED -----------')
 
-newFilePath = os.path.dirname(globPath)
-newFilePath += '/stripped-'
-newFilePath += os.path.basename(globPath)
+newFilePath = globPath + '.stripped'
+
+bFileExists = True
+while bFileExists:
+    if not os.path.isfile(newFilePath):
+        bFileExists = False
+    else:
+        newFilePath += '.stripped'
 
 wFile = open(newFilePath,mode='x') # can omit 'mode=' for just 'x'/'r'/'w'
 if not wFile.writable():
