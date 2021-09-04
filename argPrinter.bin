@@ -3,6 +3,10 @@
 argPrinter.bin -- were you expecting .exe? so was I.
 ----------------------------------------------------
 testing argv from sys module.
+-wanted to be able to call this program and enter
+any number of arbitrary args and have it print
+them back to you, but it doesn't seem to work
+as-is.
 github.com/user5260/pyscripts
 '''
 import os
