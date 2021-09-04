@@ -12,5 +12,5 @@ import pyperclip
 
 print('''----------------------
 	clipboard contents:
-	------------------------''')
+------------------------''')
 print(pyperclip.paste())
