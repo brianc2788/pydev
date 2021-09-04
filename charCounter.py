@@ -1,15 +1,21 @@
 '''
-charCounter.py
+charCounter2.py
 --------------
-Prompts user to enter a plaintext file
-path and outputs the number of characters
-contained in that file.
-characters include the alphabet and digits.
-does not include whitespace or punctuation.
--edit: changed the regex to just pick out
-       ALL NON-WHITESPACE.
-       includes newline chars and carr.
-       returns.
+this is an improved version of
+the original charCounter.py.
+Rid of some redundancies and
+more informative final results.
+
+UPDATE: appears to work; have done
+some manual counting and other work
+to verify the results of this script
+and, although not a very rigorous
+verification thus far, it appears
+to work. fingers crossed.
+UPDATE: Total Character results are accurate.
+UPDATE: Cleaned up the code a bit and added
+'whitespace chars' to the final report.
+
 github.com/user5260/pyscripts/charCounter.py
 '''
 import os
@@ -20,12 +26,12 @@ globPath = ''
 bGoodPath = False
 bGoodFile = False
 
-# RegEx - Valid Characters
-#charRegex = re.compile(r'[a-zA-Z0-9_-]')
-# [a-zA-Z0-9_./\!@#$%^&*()-]
-#sadly, i think this simple expression
-#is more practical. why not count all non-whitespace?
-charRegex = re.compile(r'[\S]')
+# Various groups of character expressions.
+totalRegex = re.compile(r'[\S]') # everything but whitespace
+alphaRegex = re.compile(r'[a-zA-Z]') # just alphabetical
+digitRegex = re.compile(r'[\d]') # just digits
+puncRegex = re.compile(r'[^a-zA-Z0-9\s]') # just punctuation/other
+wspaceRegex = re.compile(r'[\s]')
 
 # Introduction/Title & Seperator
 print('''character counter - python script
@@ -50,17 +56,16 @@ while not bGoodPath & bGoodFile:
             bGoodFile = True
             globPath = usrInput
 
-# create a read-only file object/open the file.
+# create a read-only file object/open the file. store the text in a string. close the file.
 rFileObj = open(globPath, mode='r')
 fullFileString = rFileObj.read()
 rFileObj.close()
 
-results = charRegex.findall(fullFileString)
-
-# count
-charCount = 0
-for n in results:
-    charCount += 1
-
 print('''------------------------------------
-Total Characters: '''+str(charCount))
+Total Characters: '''+str(len(totalRegex.findall(fullFileString)))+'''
+-----------------------------------------'''+'''
+Alpha Characters: '''+str(len(alphaRegex.findall(fullFileString)))+'''
+Digit Characters: '''+str(len(digitRegex.findall(fullFileString)))+'''
+Punctuation Chars: '''+str(len(puncRegex.findall(fullFileString)))+'''
+Whitespace (not counted in total): '''+str(len(wspaceRegex.findall(fullFileString)))+'''
+-------------------------------------''')
