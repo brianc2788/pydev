@@ -4,9 +4,16 @@ phone-email-cb-extractor.py
 from 'Automating the Boring Stuff..'
 filters all text out of the clupboard
 except for phone numbers and emails.
-
 going by the book;
 not how i would do it.
+
+-works mostly as advertised, but
+ the emailRegex was a serious
+ problem and crashed the
+ interpreter, so for now, it
+ just extracts phone numbers.
+
+github.com/user5260/pyscripts
 '''
 import re
 import pyperclip
@@ -26,12 +33,12 @@ phoneRegex = re.compile(r'''(
 # Email Regex -- better than mine, but don't like the characters
 #				 included for the usernames, etc. also, odd groupings.
 # will match most, typical email/email-formats
-emailRegex = re.compile(r'''(
-	[a-zA-Z0-9._-+%]+			# username
-	@							# @ seperator
-	[a-zA-Z0-9.-]+				# domain name
-	(\.[a-zA-Z]{2,4})			# top-level-domain name
-	)''', re.VERBOSE)
+# emailRegex = re.compile(r'''(
+# 	[a-zA-Z0-9._-+%]+			# username
+# 	@							# @ seperator
+# 	[a-zA-Z0-9.-]+				# domain name
+# 	(\.[a-zA-Z]{2,4})			# top-level-domain name
+# 	)''', re.VERBOSE)
 
 # Finding matches in the clipboard
 cbText = str(pyperclip.paste())
@@ -42,6 +49,13 @@ for groups in phoneRegex.findall(cbText):
 	if groups[8] != '':
 		phoneNum += ' x' + groups[8]
 	matches.append(phoneNum)
-for groups in emailRegex.findall(cbText):
-	matches.append(groups[0])
+# for groups in emailRegex.findall(cbText):
+# 	matches.append(groups[0])
 
+# Copy results back to the clipboard.
+if len(matches) > 0:
+	pyperclip.copy('\n'.join(matches))
+	print('the following matches were found and pasted to the clipboard: ')
+	print('\n'.join(matches))
+else:
+	print('no matches')
