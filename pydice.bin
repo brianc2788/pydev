@@ -31,7 +31,6 @@ while bRun:
         while nValue > 0:
             nCount = nCount + 1
             print('Roll #',nCount, ': ', random.randint(1,6))
-            nValue = nValue - 1
+            nValue -= 1
     else:
         print('invalid input.')
-
