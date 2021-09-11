@@ -10,6 +10,10 @@ opens google maps in a new browser.
 if the expression doesn't like the
 address you inputted, it won't try
 to open a browser.
+- i dont really like this script
+  for a few reasons, but it at
+  least 'appears' to do what it
+  says, so i'll just leave it...
 '''
 import re,webbrowser
 
@@ -33,6 +37,5 @@ else:
 	searchStr = 'https://google.com/maps/place/'
 	for n in resultsList:
 		searchStr += n
-		searchStr += '+'
 
 	webbrowser.open_new(searchStr)
