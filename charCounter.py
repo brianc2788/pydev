@@ -18,8 +18,7 @@ UPDATE: Cleaned up the code a bit and added
 
 github.com/user5260/pyscripts/charCounter.py
 '''
-import os
-import re
+import os,re
 
 # Some global vars
 globPath = ''
@@ -49,7 +48,7 @@ while not bGoodPath & bGoodFile:
             print('---file not found---')
             # thought it might be helpful to list
             # the contents of the user's dir (if good).
-            print('---files in given dir:---')
+            print('---files in your dir:---')
             os.system('ls '+str(os.path.dirname(usrInput)))
             bGoodFile = False
         else:
@@ -63,10 +62,13 @@ rFileObj.close()
 
 print('''------------------------------------
 Total Characters: '''+str(len(totalRegex.findall(fullFileString)))+'''
-Total Chars (w/wspace&eof): '''+str(len(totalRegex.findall(fullFileString))+len(wspaceRegex.findall(fullFileString)))+'''
+Total Chars (w/wspace & 1 EOF): '''+str(len(totalRegex.findall(fullFileString))+len(wspaceRegex.findall(fullFileString)))+'''
 -----------------------------------------'''+'''
 Alpha Characters: '''+str(len(alphaRegex.findall(fullFileString)))+'''
 Digit Characters: '''+str(len(digitRegex.findall(fullFileString)))+'''
 Punctuation Chars: '''+str(len(puncRegex.findall(fullFileString)))+'''
-Whitespace (not counted in total): '''+str(len(wspaceRegex.findall(fullFileString)))+'''
+Whitespace (not counted in total): '''+str(len(wspaceRegex.findall(fullFileString))-1)+'''
 -------------------------------------''')
+# subtracting 1 from the whitespace tally at the end.
+# EOF gets added and we don't want that. we want to count \n, but not \0.
+# EOF does, however, get added to the total(w/wspace) above.
