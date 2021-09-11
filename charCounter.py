@@ -63,6 +63,7 @@ rFileObj.close()
 
 print('''------------------------------------
 Total Characters: '''+str(len(totalRegex.findall(fullFileString)))+'''
+Total Chars (w/wspace&eof): '''+str(len(totalRegex.findall(fullFileString))+len(wspaceRegex.findall(fullFileString)))+'''
 -----------------------------------------'''+'''
 Alpha Characters: '''+str(len(alphaRegex.findall(fullFileString)))+'''
 Digit Characters: '''+str(len(digitRegex.findall(fullFileString)))+'''
