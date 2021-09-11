@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 '''
-cb-fcopy.bin
+cb-fcopy.py
+ClipBoard - File Copy
 ------------
 binary python script that
 takes a plaintext file arg.
