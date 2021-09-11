@@ -36,3 +36,5 @@ if len(sys.argv) == 2:
 
 			# DEBUG output: print a sitrep.
 			print('------------------------------\n::COPIED TO CLIPBOARD:\n'+fileStringF)
+else:
+	print('invalid arg(s). clipboard unmodified.')
