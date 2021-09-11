@@ -1,0 +1,38 @@
+#! /usr/bin/env python3
+'''
+cb-fcopy.bin
+------------
+binary python script that
+takes a plaintext file arg.
+copies the text in the file
+to the clipboard.
+'''
+import os,sys,pyperclip
+
+if len(sys.argv) == 2:
+	argPath = sys.argv[1]
+
+	# if arg is not an absolute path, make it so.
+	if not os.path.isabs(argPath):
+		argPath = os.path.join(os.getcwd(),argPath)
+
+	print('current dir: '+os.getcwd())
+	print('target file: '+argPath)
+
+	if not os.path.isfile(argPath):
+		print('file not found')
+	else:
+		rfile = open(argPath,mode='r')
+
+		if not rfile.readable():
+			print('file not readable')
+		else:
+			fileString = rfile.read()
+			rfile.close()
+
+			# remove trailing newline char and copy to cb.
+			fileStringF = fileString[:(len(fileString)-1)]
+			pyperclip.copy(fileStringF)
+
+			# DEBUG output: print a sitrep.
+			print('------------------------------\n::COPIED TO CLIPBOARD:\n'+fileStringF)
