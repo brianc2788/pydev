@@ -3,10 +3,20 @@
 cb-fcopy.py
 ClipBoard - File Copy
 ------------
-binary python script that
 takes a plaintext file arg.
 copies the text in the file
 to the clipboard.
+Not robust; some assumptions
+are made about files and their
+content because of how i use
+the script for own purposes.
+for example, it only copies
+the first line in a file with
+read(), because, typically, i
+only need to copy the first,
+single line from a file
+when i use this script.
+hope that makes sense.
 '''
 import os,sys,pyperclip
 
@@ -28,6 +38,8 @@ if len(sys.argv) == 2:
 		if not rfile.readable():
 			print('file not readable')
 		else:
+			#using read() over readlines() because,
+			#i usually just need to copy a single line.
 			fileString = rfile.read()
 			rfile.close()
 
