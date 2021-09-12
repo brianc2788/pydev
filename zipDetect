@@ -23,8 +23,15 @@ else:
     else:
         print('--------------------\nDirectory listing for: '+sys.argv[1]+'\n'+
               '--------------------')
+
+        # if a file in the directory is a zip file,
+        # point it out and list its contents.
+        # indented for readability.
         for n in os.listdir(sys.argv[1]):
             if zipfile.is_zipfile(os.path.join(sys.argv[1],n)):
+                zipf1 = zipfile.ZipFile(os.path.join(sys.argv[1],n))
                 print(n+' <----------------------------ZIP FILE')
+                for n in zipf1.namelist():
+                    print('\t'+n)
             else:
                 print(n)
