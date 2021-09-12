@@ -32,7 +32,17 @@ if len(sys.argv) == 2:
 			rfile.close()
 
 			# remove trailing newline char and copy to cb.
-			fileStringF = fileString[:(len(fileString)-1)]
+			#fileStringF = fileString[:(len(fileString)-1)]
+			# commented this out because it assumed the
+			# final element in the string was a \n;
+			# which, most of the time, it was, but
+			# still unproper. the following code
+			# actually checks that it is a \n char,
+			# and strips it if, and only if, it is.
+			fileStringF = ''
+			for n in fileString:
+				if n != '\n':
+					fileStringF += n
 			pyperclip.copy(fileStringF)
 
 			# DEBUG output: print a sitrep.
