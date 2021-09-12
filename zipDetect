@@ -1,0 +1,30 @@
+#! /usr/bin/env python3
+'''
+zipDetect - bin/exe
+[detect and print the zip files in cwd to stdout.]
+--------------------------------------------------
+github.com/user5260/pyscripts
+'''
+import os,sys,zipfile
+
+# DEBUG STUFF
+# sys.argv.append('/home/userone/dev')
+# nArgCount = 1
+# for n in sys.argv:
+#     print('Arg #'+str(nArgCount)+' '+n)
+#     nArgCount += 1
+
+if len(sys.argv) < 2:
+    print('Usage - "$./zipDetect <full or relative directory>"')
+else:
+    if not os.path.isdir(sys.argv[1]):
+        print('invalid directory')
+        sys.exit()
+    else:
+        print('--------------------\nDirectory listing for: '+sys.argv[1]+'\n'+
+              '--------------------')
+        for n in os.listdir(sys.argv[1]):
+            if zipfile.is_zipfile(os.path.join(sys.argv[1],n)):
+                print(n+' <----------------------------ZIP FILE')
+            else:
+                print(n)
