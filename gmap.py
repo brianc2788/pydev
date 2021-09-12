@@ -10,10 +10,8 @@ opens google maps in a new browser.
 if the expression doesn't like the
 address you inputted, it won't try
 to open a browser.
-- i dont really like this script
-  for a few reasons, but it at
-  least 'appears' to do what it
-  says, so i'll just leave it...
+-other notes-
+city must be limited to one word, unfortunately.
 '''
 import re,webbrowser
 
@@ -31,11 +29,16 @@ testStr = input('enter addr: ')
 
 resultsList = addrRegex.findall(testStr)
 
+
 if not len(resultsList) > 0:
 	print('couldn\'t detect a valid street address in your input.')
 else:
 	searchStr = 'https://google.com/maps/place/'
-	for n in resultsList:
-		searchStr += n
-
+	for n in resultsList[0]:
+		if n == ' ':
+			searchStr += '+'
+		else:
+			searchStr += n
+	#DEBUG: printing searchStr to make sure the loop formatted it correctly
+	print(searchStr)
 	webbrowser.open_new(searchStr)
