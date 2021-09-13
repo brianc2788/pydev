@@ -1,0 +1,23 @@
+#! /usr/bin/env python3
+'''
+dec2hex - decimal 2 hexidecimal converter
+-----------------------------------------
+like the desc says.
+'''
+import sys
+
+def main():
+	if len(sys.argv) < 2:
+		print('**Usage - "./dec2hex <integer> <integer> ..."')
+		sys.exit()
+	else:
+		nCount = 1
+		while nCount < len(sys.argv):
+			num1 = sys.argv[nCount]
+			num1 = int(num1)
+			print('dec: '+str(num1))
+			print('hex: '+str(hex(num1)),end='\n\n')
+			nCount += 1
+
+if __name__ == '__main__':
+	main()
