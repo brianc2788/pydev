@@ -30,8 +30,8 @@ else:
         for n in os.listdir(sys.argv[1]):
             if zipfile.is_zipfile(os.path.join(sys.argv[1],n)):
                 zipf1 = zipfile.ZipFile(os.path.join(sys.argv[1],n))
-                print(n+' <----------------------------ZIP FILE')
+                print(n+' <----------------------------FOUND ZIP FILE')
                 for n in zipf1.namelist():
                     print('\t'+n)
-            else:
-                print(n)
+            #else:
+                #print(n)

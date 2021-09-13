@@ -1,0 +1,42 @@
+#! /usr/bin/env python3
+'''
+lookupWord - python script
+--------------------------
+look up a word, using an online
+dictionary (merriam-webster.com)
+and open the page up in a
+browser for viewing.
+Slightly faster than looking
+it up online yourself!
+the code is sloppy,
+the output is bad and returns
+too much info;
+but a fun experiment and it
+actually functions as promised;
+will fetch you the definition
+slightly quicker than the
+alternative.
+'''
+import sys,requests,re
+
+#definition regex
+# grok regex
+#re.compile(r'(Grok)(.{5,50})?.')
+#testWord = 'Grok'
+
+if len(sys.argv) < 2:
+	print('usage - "./lookupWord <single-word-arg>"\nCase sensitive! Must capitalize first letter and use all lowercase afterwards.')
+elif len(sys.argv) > 2:
+	print('too many args')
+	sys.exit()
+else:
+	testWord = sys.argv[1]
+	lookupRE = re.compile(r'('+testWord+r')( definition is -)(.{5,500})?')
+	req1 = requests.get('http://www.merriam-webster.com/dictionary/'+testWord)
+	webpage1 = req1.text
+	try:
+		result = lookupRE.search(webpage1)
+		print(str(result.group(3)))
+	except:
+		print('::Tried, but coudn\'t get a definition for your word. Sorry, bro.::')
+		sys.exit()
