@@ -3,7 +3,9 @@ ping.py - call the ping command.
 --------------------------------
 host machine pings an address.
 
-github.com/user5260
+I believe i got this from
+"Mastering Python for Networking & Pentesting..."
+by Jose Manuel Ortega
 '''
 import subprocess
 import sys

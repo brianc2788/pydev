@@ -1,0 +1,20 @@
+#! /usr/bin/env python3
+'''
+getMyIP - python script
+-----------------------
+Reports your external IP address.
+- Powered by 'http://ip4.top10vpn.com/'
+
+also considered using curl and/or
+the site 'ip4.me/api/'.
+'''
+import sys,requests
+
+# alternate - 'https://ip4.me/api/'
+webServiceAddr = 'https://ip4.top10vpn.com/'
+
+httpRequest = requests.get(webServiceAddr)
+
+IPstr = httpRequest.text
+
+print(IPstr)

@@ -1,0 +1,19 @@
+#! /usr/bin/env python3
+'''
+pingAddr - ping an address
+--------------------------
+'''
+import os,sys,subprocess
+
+argList = sys.argv
+
+if len(argList) < 2:
+	print('USAGE - "./pingAddr <address>')
+	sys.exit()
+else:
+	address = sys.argv[1]
+	pingCmd = ['ping','-c1',address]
+	sub1 = subprocess.Popen(pingCmd,shell=False,stderr=subprocess.PIPE)
+	output = sub1.stderr.read(1)
+	sys.stdout.write(str(output.decode('utf-8')))
+	sys.stdout.flush()
