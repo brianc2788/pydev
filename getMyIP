@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 '''
-getMyIP - python script
+getMyIP - python script, web scraper.
 -----------------------
 Reports your external IP address.
 - Powered by 'http://ip4.top10vpn.com/'
