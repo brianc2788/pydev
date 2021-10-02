@@ -10,7 +10,7 @@ def arpSpoof(dest_ip,dest_mac,src_ip):
 	# TODO spoof it up...
 	packet = ARP(op='is-at',hwsrc = dest_mac,
 				psrc = dest_ip,pdst = src_ip)
-	send(packet,verbose=True)
+	send(packet,verbose=True) # Originally set to 'False', but I like True, I think?
 
 def arpRestore(dest_ip,dest_mac,src_ip,src_mac):
 	packet = ARP(op='is-at',hwsrc = src_mac,
