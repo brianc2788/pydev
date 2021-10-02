@@ -2,6 +2,8 @@
 arp-spoofer.py
 --------------
 arp poison attack script.
+
+Usage: ./sudo python3 arp-spoofer.py <victim-ip> <router-ip>
 '''
 from scapy.all import *
 import sys
