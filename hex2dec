@@ -17,8 +17,8 @@ def main():
 	else:
 		nCount = 1
 		while nCount < len(sys.argv):
-			num1 = sys.argv[nCount]
-			num1 = int(num1,16)
+			num1 = int(sys.argv[nCount], 16)
+			#num1 = int(num1,16)
 			print(num1)
 			nCount += 1
 
