@@ -4,14 +4,32 @@ smtp-mailer - Python 3.9
 -----------
 send an email over the command line.
 leverages smtp tech.
+
+for now, only sends simple, one-line
+messages of text.
 '''
 import sys,smtplib
 
-#TODO: get sys args (user,pass,message?)
+# copy args to a list; strip out first arg (cmd name).
+argList = sys.argv[1:]
+
+if len(argList) < 3:
+    print('Usage: ./smtp-mailer <src_address> <src_passw> <dst_addr>')
+    quit()
+else:
+    src_addr = argList[0]
+    src_passw = argList[1]
+    dst_addr = argList[2]
+
+    sMsg = 'Subject: -Sent from smtp-mailer app!\n'
+
+    print('Composing email to '+dst_addr+'\nEnter:\n')
+    sMsg += input()
+
 
 #TODO: code this stuff...
-smtpObj = smtplib.SMTP('smtp.gmail.com',587)
-smtpObj.ehlo()
-smtpObj.starttls()
-smtpObj.login('usr@gmail.com','p4ssw0rd')
-smtpObj.sendmail('SRC@ADDR.COM','DST@ADDR.COM','Subject: \nMessage')
+    smtpObj = smtplib.SMTP('smtp.gmail.com',587)
+    smtpObj.ehlo()
+    smtpObj.starttls()
+    smtpObj.login(src_addr,src_passw)
+    smtpObj.sendmail(src_addr,dst_addr,sMsg)
