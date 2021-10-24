@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+'''
+description
+'''
+import smtplib
+
+# CREATE SMTP CONNECTION TO GMAIL
+# smtp object
+try:
+    smtp = smtplib.SMTP('smtp.gmail.com',587)
+except Exception:
+    print("Can't connect to the Gmail SMTP server. Quitting...")
+    quit()
+try:
+    smtp.ehlo()
+except Exception:
+    print('ehlo() has failed.')
+    quit()
+try:
+    smtp.starttls()
+except Exception:
+    print('starttls() has failed.')
+    quit()
+
+# FUNCTION DEFINITIONS
+def SmtpLogin(strName,strPassW):
+    try:
+        smtp.login(strName,strPassW)
+    except Exception:
+        print('login() has failed.')
+        return False
+    print('login success.')
+    return True
+
+def SendMail(SrcAddr,DstAddr,Message):
+    try:
+        smtp.sendmail(SrcAddr,DstAddr,Message)
+    except Exception:
+        print('failed to send your email. quitting...')
+        quit()
+
+# MAIN PROGRAM
+print('-----------------------\n'+
+      '-    GMAIL COMPOSER   -\n'+
+      '-----------------------\n')
+
+usrName = ''
+usrPass = ''
+bLogin = False
+while not bLogin:
+    usrName = input('Username: ')
+    usrPass = input('Password: ')
+    bLogin = SmtpLogin(usrName,usrPass)
+    if not bLogin:
+        print('Invalid credentials')
+
+dstName = input('Enter recipient email address: ')
+sMsg = 'Subject: '
+sMsg += input('Email Subject: ')
+sMsg += '\n'
+
+print('\n[!]Instructions\n'+
+      '::Compose your email\n'+
+      '::Press Ctrl+C to quit\n'+
+      '::Enter:')
+
+while True:
+    try:
+        sMsg += input()
+    except KeyboardInterrupt:
+        SendMail(usrName,dstName,sMsg)
+        print('\nYour mail was sent. exiting...')
+        quit()
