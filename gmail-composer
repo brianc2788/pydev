@@ -67,6 +67,7 @@ print('\n[!]Instructions\n'+
 while True:
     try:
         sMsg += input()
+        sMsg += '\n'
     except KeyboardInterrupt:
         SendMail(usrName,dstName,sMsg)
         print('\nYour mail was sent. exiting...')
