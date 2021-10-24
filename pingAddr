@@ -11,7 +11,7 @@ if len(argList) < 2:
 	print('USAGE - "./pingAddr <address>')
 	sys.exit()
 else:
-	address = sys.argv[1]
+	address = argList[1]
 	pingCmd = ['ping','-c1',address]
 	sub1 = subprocess.Popen(pingCmd,shell=False,stderr=subprocess.PIPE)
 	output = sub1.stderr.read(1)

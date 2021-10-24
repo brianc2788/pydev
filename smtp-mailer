@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+'''
+smtp-mailer - Python 3.9
+-----------
+send an email over the command line.
+leverages smtp tech.
+'''
+import sys,smtplib
+
+#TODO: get sys args (user,pass,message?)
+
+#TODO: code this stuff...
+smtpObj = smtplib.SMTP('smtp.gmail.com',587)
+smtpObj.ehlo()
+smtpObj.starttls()
+smtpObj.login('usr@gmail.com','p4ssw0rd')
+smtpObj.sendmail('SRC@ADDR.COM','DST@ADDR.COM','Subject: \nMessage')
