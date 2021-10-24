@@ -24,12 +24,38 @@ else:
     sMsg = 'Subject: -Sent from smtp-mailer app!\n'
 
     print('Composing email to '+dst_addr+'\nEnter:\n')
-    sMsg += input()
+
+    # loop to compose e-mail.
+    # ends when the final char in a string is
+    # a period.
+    # I.e., stops getting input for sMsg when final
+    # char in the string is '.'
+
+    bMsgDone = False
+
+    while not bMsgDone:
+        sMsg += input()
+        if sMsg[(len(sMsg)-1)] == '.':
+            bMsgDone = True
+        else:
+            sMsg += ('\n')
+            continue
+
+    print('\nGot Msg\nContacting gmail smtp servers...\n')
 
 
 #TODO: code this stuff...
-    smtpObj = smtplib.SMTP('smtp.gmail.com',587)
-    smtpObj.ehlo()
-    smtpObj.starttls()
-    smtpObj.login(src_addr,src_passw)
-    smtpObj.sendmail(src_addr,dst_addr,sMsg)
+    try:
+        smtpObj = smtplib.SMTP('smtp.gmail.com',587)
+        smtpObj.ehlo()
+        print('got server response 250 (OK)')
+        smtpObj.starttls()
+        print('TLS encryption started successfully.')
+        smtpObj.login(src_addr,src_passw)
+        print('login successful.')
+        smtpObj.sendmail(src_addr,dst_addr,sMsg)
+        print('mail sent.')
+    except e:
+        quit()
+
+print('\nExiting...\n')
