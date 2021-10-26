@@ -10,33 +10,38 @@ Slightly faster than looking
 it up online yourself!
 the code is sloppy,
 the output is bad and returns
-too much info;
+too much text,
 but a fun experiment and it
 actually functions as promised;
 will fetch you the definition
 slightly quicker than the
 alternative.
+
+powered by merriam-webster.com.
 '''
 import sys,requests,re
 
+#debug
 #definition regex
 # grok regex
 #re.compile(r'(Grok)(.{5,50})?.')
 #testWord = 'Grok'
 
 if len(sys.argv) < 2:
-	print('usage - "./lookupWord <single-word-arg>"\nCase sensitive! Must capitalize first letter and use all lowercase afterwards.')
+	print('usage - "./lookupWord <word>"\n'+
+	      '<word> - The word/term you want to look up.')
 elif len(sys.argv) > 2:
-	print('too many args')
+	print('Sorry - One word at a time, please.')
 	sys.exit()
 else:
 	testWord = sys.argv[1]
-	lookupRE = re.compile(r'('+testWord+r')( definition is -)(.{5,500})?')
+	lookupRE = re.compile(r'('+testWord.capitalize()+r')( definition is -)(.{5,500})?')
 	req1 = requests.get('http://www.merriam-webster.com/dictionary/'+testWord)
 	webpage1 = req1.text
 	try:
 		result = lookupRE.search(webpage1)
-		print(str(result.group(3)))
+		print(str(result.group(3)).replace(' How to use '+testWord+' in a sentence.',''))
 	except:
-		print('::Tried, but coudn\'t get a definition for your word. Sorry, bro.::')
+		print('::Tried, but coudn\'t get a definition for your word.::\n'+
+		      '::Sorry, bro.::')
 		sys.exit()
