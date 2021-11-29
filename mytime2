@@ -59,7 +59,11 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #fontPath = os.path.join(os.getcwd(),'resources','fonts','Pixeltype.ttf')
-fontPath = '/home/userone/dev/python/pyscripts/resources/fonts/Pixeltype.ttf'
+#fontPath = '/home/userone/dev/python/pyscripts/resources/fonts/Pixeltype.ttf'
+fontPath = subprocess.getoutput('which mytime2')
+fontPath = fontPath.strip('mytime2')
+fontPath = os.path.join(fontPath,'resources','fonts','Pixeltype.ttf')
+
 font = pygame.font.Font(fontPath,50)
 
 winsurf = pygame.display.set_mode(font.size(fullTime))
