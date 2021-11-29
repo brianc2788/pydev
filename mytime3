@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+'''
+mytime - Version 3
+------------------
+Better design resulting in better
+performance and readability.
+
+Powered by Pygame.
+'''
+from sys import exit
+from subprocess import getoutput
+import pygame
+
+path = getoutput('which mytime3')
+path = path.strip('mytime3')
+path_font = path + 'resources/fonts/Pixelfont.ttf'
+print('mytime(v3) path:\n',
+       path,'\n'
+       'font path:\n',
+       path_font)
+exit()
+
+# Pygame - init and create some glob vars. #
+pygame.init()
+windowSurface = pygame.display.set_mode((100,133))
+appclock = pygame.time.Clock()
+#font = pygame.font.Font()
+
+# Glob Functions #
+
+# Main loop #
+bRun = 1
+while bRun:
+    # EVENTS #
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            bRun = 0
+            break
+    pygame.display.update()
+    program_clock.tick(30)
+
+pygame.quit()
+exit()
