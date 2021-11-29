@@ -68,13 +68,9 @@ while(1):
     timeSurf = font.render(fullTime,False,(255,255,255),(0,0,0)).convert()
     winsurf.blit(timeSurf,(0,0))
     pygame.display.update()
-
-    '''
-    very slow clock tick.
-    keeps the window 
-    '''
     clock.tick(30)
 
+    # handle events.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
