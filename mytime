@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+'''
+mytime - Python script
+----------------------------------------
+Simple script that gets the system time
+and prints it to the user.
+
+Very weird script; I know.
+Out of boredom and a desire to, at
+least, stay sharp with Python.
+I repeat; boredom was a very motivating
+factor.
+----------------------------------------
+brianc2788@gmail.com
+'''
+import subprocess
+
+def convHour(hour24):
+    ihour24 = int(hour24)
+    if ihour24 > 12:
+    	return str(ihour24-12)
+    else:
+    	return str(ihour24)
+
+'''
+Convert the hour from 'date %H', rather than just get the
+full time from 'date +%x' or %r or any number of
+superior options... Reminder that this script was written
+out of boredom.
+'''
+nHour = subprocess.getoutput('date +%H')
+nHour = convHour(nHour)
+
+fullTime = nHour + ':' + subprocess.getoutput('date +%M:%S')
+
+print('CURRENT TIME: ',fullTime)

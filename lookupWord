@@ -38,6 +38,7 @@ else:
 	lookupRE = re.compile(r'('+testWord.capitalize()+r')( definition is -)(.{5,500})?')
 	req1 = requests.get('http://www.merriam-webster.com/dictionary/'+testWord)
 	webpage1 = req1.text
+	print(webpage1)
 	try:
 		result = lookupRE.search(webpage1)
 		print(str(result.group(3)).replace(' How to use '+testWord+' in a sentence.',''))
