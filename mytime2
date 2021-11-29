@@ -7,12 +7,6 @@ Adding graphical display with pygame.
 ----------------------------------------
 Simple script that gets the system time
 and prints it to the user.
-
-Very weird script; I know.
-Out of boredom and a desire to, at
-least, stay sharp with Python.
-I repeat; boredom was a very motivating
-factor.
 ----------------------------------------
 brianc2788@gmail.com
 '''
@@ -31,8 +25,7 @@ def convHour(hour24):
 '''
 Convert the hour from 'date %H', rather than just get the
 full time from 'date +%x' or %r or any number of
-superior options... Reminder that this script was written
-out of boredom.
+other, superior options.
 '''
 nHour = subprocess.getoutput('date +%H')
 nHour = convHour(nHour)
@@ -42,24 +35,22 @@ fullTime = nHour + ':' + subprocess.getoutput('date +%M:%S')
 print('CURRENT TIME: ',fullTime)
 
 '''
-============
+=======================================
 PYGAME 'GUI'
 Had an idea to add some graphical output with pygame.
 Just glued some more code to the bottom of the
 original 'mytime' source code.
-
-Going to leave as-is -
-This was more of a rough draft. Another version
-will follow with an entirely different design.
-Planning to include exception handling, update
-the time and the graphics, etc.
-============
+=======================================
 '''
 pygame.init()
 clock = pygame.time.Clock()
 
 #fontPath = os.path.join(os.getcwd(),'resources','fonts','Pixeltype.ttf')
-fontPath = '/home/userone/dev/python/pyscripts/resources/fonts/Pixeltype.ttf'
+#fontPath = '/home/userone/dev/python/pyscripts/resources/fonts/Pixeltype.ttf'
+fontPath = subprocess.getoutput('which mytime2')
+fontPath = fontPath.strip('mytime2')
+fontPath = os.path.join(fontPath,'resources','fonts','Pixeltype.ttf')
+
 font = pygame.font.Font(fontPath,50)
 
 winsurf = pygame.display.set_mode(font.size(fullTime))
