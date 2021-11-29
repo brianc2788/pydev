@@ -4,29 +4,30 @@ mytime - Version 3
 ------------------
 Better design resulting in better
 performance and readability.
+Clearer goals.
 
 Powered by Pygame.
 '''
 from sys import exit
 from subprocess import getoutput
-import pygame
+import pygame,time
 
-path = getoutput('which mytime3')
-path = path.strip('mytime3')
-path_font = path + 'resources/fonts/Pixelfont.ttf'
-print('mytime(v3) path:\n',
-       path,'\n'
-       'font path:\n',
-       path_font)
-exit()
+def strSysTime():
+    currentT = time.localtime()
+    timeString = ''
+    timeString += str(currentT.tm_hour)+':'+str(currentT.tm_min)+':'+str(currentT.tm_sec)
+    return timeString
 
 # Pygame - init and create some glob vars. #
 pygame.init()
-windowSurface = pygame.display.set_mode((100,133))
+path = getoutput('which mytime3')
+path = path.strip('mytime3')
+path_font = path + 'resources/fonts/Pixeltype.ttf'
+font = pygame.font.Font(path_font,200)
+blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))
+windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
 appclock = pygame.time.Clock()
-#font = pygame.font.Font()
-
-# Glob Functions #
+currentTime = ''
 
 # Main loop #
 bRun = 1
@@ -36,8 +37,12 @@ while bRun:
         if event.type == pygame.QUIT:
             bRun = 0
             break
+    currentTime = strSysTime()
+    timeSurf = font.render(currentTime,False,(255,255,255),(0,0,0)).convert()
+    windowSurface.blit(blankSurf,(0,0))
+    windowSurface.blit(timeSurf,(0,0))
     pygame.display.update()
-    program_clock.tick(30)
+    appclock.tick(30) # update 30fps
 
 pygame.quit()
 exit()
