@@ -20,6 +20,7 @@ def strSysTime():
 
 # Pygame - init and create some glob vars. #
 pygame.init()
+pygame.display.set_caption('mytime, version 3 - brianc2788@gmail.com')
 path = getoutput('which mytime3')
 path = path.strip('mytime3')
 path_font = path + 'resources/fonts/Pixeltype.ttf'
