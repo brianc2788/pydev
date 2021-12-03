@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-apt-clean-resconfs
+aptAutoPurge - Python 3.x.x
 ------------------
 custom script to clean
 any "[residual-config]" files
