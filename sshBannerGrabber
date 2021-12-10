@@ -23,8 +23,9 @@ import socket
 # protocolRegex = re.compile(r'[ftp{3}FTP{3}http{4}HTTP{4}ssh{3}SSH{3}]')
 protocolRegex = re.compile(r'[ftp|FTP|https|HTTPS|ssh|SSH|mysql|MYSQL]{1,4}')
 
-sock1 = socket.socket()
-sock1.settimeout(10)
+# socket() args: AF_INET is ipv4, SOCK_STREAM is tcp.
+sock1 = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+sock1.settimeout(30)
 
 target1 = input('enter ipv4 address w/open ssh port: ')
 sshport = 22
@@ -35,9 +36,3 @@ print('--------------------------------------------')
 print('Downloaded Banner:\n'+serverBanner)
 print('--------------------------------------------')
 print('Protocol RegExp. results (list):\n'+str(protocolRegex.findall(serverBanner)))
-# try:
-#     serverBanner = str(sock1.recv(1024))
-
-# print('RESULTS:\n--------')
-# for n in protocolRegex.findall(serverBanner):
-#     print(n)
