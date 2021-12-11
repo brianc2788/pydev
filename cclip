@@ -1,22 +1,11 @@
 #! /usr/bin/env python3
 '''
-cb-fcopy.py
-ClipBoard - File Copy
-------------
-takes a plaintext file arg.
-copies the text in the file
-to the clipboard.
-Not robust; some assumptions
-are made about files and their
-content because of how i use
-the script for own purposes.
-for example, it only copies
-the first line in a file with
-read(), because, typically, i
-only need to copy the first,
-single line from a file
-when i use this script.
-hope that makes sense.
+cclip - "copy clip"
+copies text/files to the clipboard
+-----------
+Usage: ccopy <absoluteORrelativePATH>
+takes a file location as its arg.
+copies contents to the clipboard.
 '''
 import os,sys,pyperclip
 
