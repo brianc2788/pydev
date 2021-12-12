@@ -2,43 +2,49 @@
 '''
 clypf
 -----
-copies text/files to the clipboard
------------
-Usage: ccopy <absoluteORrelativePATH>
-takes a file location as its arg.
-copies contents to the clipboard.
+Copies text/files to the clipboard.
+Authored by brianc2788@gmail.com
 '''
 import os,sys,pyperclip
 
-if len(sys.argv) == 2:
-	argPath = sys.argv[1]
+try:	
+	if len(sys.argv) == 1:
+		print(' Help/Usage:\n',
+			  '$> clypf <file>\n',
+			  'Copies TEXT FILES to the clipboard.')
 
-	# if arg is not an absolute path, make it so.
-	if not os.path.isabs(argPath):
-		argPath = os.path.join(os.getcwd(),argPath)
+	elif len(sys.argv) == 2:
+		argPath = sys.argv[1]
 
-	print('current dir: '+os.getcwd())
-	print('target file: '+argPath)
+		# if arg is not an absolute path, make it so.
+		if not os.path.isabs(argPath):
+			argPath = os.path.join(os.getcwd(),argPath)
 
-	if not os.path.isfile(argPath):
-		print('file not found')
-	else:
-		rfile = open(argPath,mode='r')
+		#DEBUG OUTPUT
+		#print('current dir: '+os.getcwd())
+		#print('target file: '+argPath)
 
-		if not rfile.readable():
-			print('file not readable')
+		if not os.path.isfile(argPath):
+			print('file not found')
 		else:
-			fileString = rfile.read()
-			rfile.close()
+			rfile = open(argPath,mode='r')
 
-			fileStringF = ''
-			for n in fileString:
-				if n != '\n':
-					fileStringF += n
-			pyperclip.copy(fileStringF)
+			if not rfile.readable():
+				print('file not readable')
+			else:
+				fileString = rfile.read()
+				rfile.close()
 
-			# DEBUG output: print a sitrep.
-			#print('------------------------------\n::COPIED TO CLIPBOARD:\n'+fileStringF)
-			print('------------------------------\n::Number of chars copied to the clipboard: '+str(len(fileStringF)))
-else:
-	print('invalid arg(s). clipboard unmodified.')
+				fileStringF = ''
+				for n in fileString:
+					if n != '\n':
+						fileStringF += n
+				pyperclip.copy(fileStringF)
+
+				# DEBUG output: print a sitrep.
+				#print('------------------------------\n::COPIED TO CLIPBOARD:\n'+fileStringF)
+				#print('------------------------------\n::Number of chars copied to the clipboard: '+str(len(fileStringF)))
+	else:
+		print('invalid arg(s). clipboard unmodified.')
+except Exception:
+	sys.exit()
