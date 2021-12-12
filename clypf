@@ -42,8 +42,12 @@ try:
 				pyperclip.copy(fileStringF)
 
 				# DEBUG output: print a sitrep.
-				#print('------------------------------\n::COPIED TO CLIPBOARD:\n'+fileStringF)
-				#print('------------------------------\n::Number of chars copied to the clipboard: '+str(len(fileStringF)))
+				#print('------------------------------\n',
+                #      'COPIED TO CLIPBOARD:\n',
+                #      fileStringF)
+				#print('------------------------------\n',
+                #      'Number of chars copied to the clipboard:\n',
+                #      str(len(fileStringF)))
 	else:
 		print('invalid arg(s). clipboard unmodified.')
 except Exception:
