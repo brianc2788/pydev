@@ -2,15 +2,17 @@
 '''
 dec2hex - decimal 2 hexidecimal converter
 -----------------------------------------
-takes decimal arguments and spits back
-their respective hex values.
+Radix Conversion; changes hex numbers to
+decimal (base 16 to base 10).
+Takes hex numbers as shell argument(s) and
+prints the decimal equivalent (respectively).
 '''
 import sys
 
 def main():
-	#if there are no args, print usage info
-	#to the user to help them out -- just in case.
-	#note; argv[0] will be the command itself (dec2hex).
+	# If there are no args, print usage info.
+    # The interpreter is considered the cmd, which
+    # makes the script the first arg (argv[0]).
 	if len(sys.argv) < 2:
 		print('**Usage - "./dec2hex <integer> <integer> ..."')
 		sys.exit()

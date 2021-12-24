@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+'''
+lookup2 - python3 script
+------------------------
+I had written a version of this
+script earlier this year that just
+stopped working one day.
+Rather than debug/troubleshoot, I
+decided to change the design to use
+BeautifulSoup4.
+Once again, this script can be called
+from the commandline and takes an arg
+of the user's word to scrape and print
+a definition gotten from the merriam-
+webster online dictionary.
+
+Authored by: brianc2788@gmail.com
+'''
+from bs4 import BeautifulSoup
+import requests,sys
+
+# If no args, print usage info.
+if len(sys.argv) < 2:
+    print('''
+    testing,
+    one
+    two
+    three.
+    '''.ljust(0))
+    
