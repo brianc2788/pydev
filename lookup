@@ -19,12 +19,14 @@ Authored by: brianc2788@gmail.com
 from bs4 import BeautifulSoup
 import requests,sys
 
-# If no args, print usage info.
-if len(sys.argv) < 2:
-    print('''
-    testing,
-    one
-    two
-    three.
-    '''.ljust(0))
+if len(sys.argv) == 2:
+    lookupWord = sys.argv[1]
+    webAddr = 'https://www.merriam-webster.com/dictionary/'+lookupWord+'/'
+    req = requests.get(webAddr)
+    soup = BeautifulSoup(req.text,'html.parser')
+    resultList = soup.select('.dtText')
+
+    for r in resultList:
+        print(r.getText())
     
+    print('\nPowered by Merriam-Webster.com.')
