@@ -1,33 +1,40 @@
-#! /usr/bin/env python3
+#!/usr/bin/python3
+'''
+facfinderP - python 3.9.x
+-------------------------
+Similar to my previous 'facfinder'
+script, but with a different design.
+Also, tried to implement a
+performace timer, but I'm not sure
+if this is the proper way of
+tracking the performance of a
+process; multithreading tech-
+niques might be necessary.
+However, when I run the
+perf and non-perf versions side-
+by-side, there is very little
+difference (if any).
+'''
+import time,sys
 
-# FactorFinderI[mproved] (slightly)
-# Build 71721
-# brianc2788@gmail.com
-# copied the code from version
-# i wrote on my desktop (from screenshot)
-#
-# brianc2788@gmail.com
-# DEV NOTE:
-# I suspect there is still
-# a problem if the user enters
-# a character or string of
-# characters (non-numeric).
-
-def findfactors(int):
-    Lfactors = []
-    for x in range(1,int,1):
-        if int % x == 0:
-            print('factor:',x)
-            Lfactors.append(x)
-    if len(Lfactors) < 2:
-        print('Is prime.')
-
-bRun = 1
-while bRun:
-    stringIn = input('enter number to find factors or \'/quit\': ')
-    if stringIn == '':
-        stringIn = '/quit'
-    if stringIn != '/quit':
-        findfactors(int(stringIn))
+def printFactors(nInput):
+    if type(nInput) == int:
+        for factor in range(1,nInput):
+            if nInput % factor == 0:
+                print(factor)
     else:
-        bRun = 0
+        print('Enter digits only.')
+
+def findFactorsP(number):
+    pStart = time.perf_counter()
+    printFactors(number)
+    pStop = time.perf_counter()
+    print('execution time: ',str(pStop-pStart)[:5],' seconds.')
+
+# script start
+usrIn = input('enter an integer to find its factors.\nEnter: ')
+try:
+    findFactorsP(int(usrIn))
+except Exception:
+    print('come on, man...')
+    sys.exit()
