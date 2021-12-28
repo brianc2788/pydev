@@ -51,4 +51,4 @@ if len(sys.argv) > 1:
                 defNum += 1
         iterCount += 1
     
-print('\nPowered by Merriam-Webster.com.\nAuthored by brianc2788@gmail.com')
+print('\nPowered by Merriam-Webster.com\nAuthored by brianc2788@gmail.com')
