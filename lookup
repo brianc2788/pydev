@@ -30,12 +30,16 @@ if len(sys.argv) > 1:
         # Request web page; pass contents to bs4.
         lookupWord = sys.argv[iterCount]
         webAddr = 'https://www.merriam-webster.com/dictionary/'+lookupWord+'/'
+        # Handle exception in case of no internet connection.
+        # socket.gaierror (get address info error); name resolution failure.
+        # Presumably, the first thing these modules try to do is resolve
+        # the domain name through the dns. Raises an exception.
         try:
             req = requests.get(webAddr)
         except Exception:
             print('An error has occurred while trying to establish a connection with the internet.')
             break
-        # Soupify; use python built-in html parser.
+        # Soupify; create soup object & designate the python built-in html parser.
         soup = BeautifulSoup(req.text,'html.parser')
         # Create list of CSS class attributes
         # Tag is <span class="dtText"><\span>
