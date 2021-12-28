@@ -30,7 +30,11 @@ if len(sys.argv) > 1:
         # Request web page; pass contents to bs4.
         lookupWord = sys.argv[iterCount]
         webAddr = 'https://www.merriam-webster.com/dictionary/'+lookupWord+'/'
-        req = requests.get(webAddr)
+        try:
+            req = requests.get(webAddr)
+        except Exception:
+            print('An error has occurred while trying to establish a connection with the internet.')
+            break
         # Soupify; use python built-in html parser.
         soup = BeautifulSoup(req.text,'html.parser')
         # Create list of CSS class attributes
@@ -39,9 +43,12 @@ if len(sys.argv) > 1:
         # Print the word & its definition(s).
         defNum = 1
         print('*',lookupWord.upper(),sep='')
-        for r in resultList:
-            print(defNum,r.getText())
-            defNum += 1
+        if len(resultList) == 0:
+            print('No dictionary entries found.')
+        else:
+            for r in resultList:
+                print(defNum,r.getText())
+                defNum += 1
         iterCount += 1
     
 print('\nPowered by Merriam-Webster.com.\nAuthored by brianc2788@gmail.com')
