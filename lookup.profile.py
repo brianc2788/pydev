@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 '''
-lookup2 - python3 script
-------------------------
-I had written a version of this
-script earlier this year that just
-stopped working one day.
-Rather than debug/troubleshoot, I
-decided to change the design to use
-BeautifulSoup4.
-Once again, this script can be called
-from the commandline and takes an arg
-of the user's word to scrape and print
-a definition gotten from the merriam-
-webster online dictionary.
+PERFORMANCE PROFILE - lookup; python3.x script
+----------------------------------------------
+Added a call to "cProfile.run()" to my "lookup"
+script. This script connects to the internet
+and retrieves a web page based on user input.
 
-Authored by: brianc2788@gmail.com
+The same desired effects can be achieved by
+calling the "cProfile" as a module from the
+command line.
+
+$> python3 -m cProfile <script_path> <args> <...>
+
+Probably do ^this^ from now on.
 '''
 from bs4 import BeautifulSoup
 import requests,sys,cProfile
