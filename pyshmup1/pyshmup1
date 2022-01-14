@@ -11,7 +11,7 @@ class Engine1(object):
         self.screen = pygame.display.set_mode((screenw,screenh))
         pygame.display.set_caption(wtitle)
     
-    def makeImg(img_path):
+    def makeImg(object,img_path):
         if os.path.isfile(img_path):
             return pygame.image.load(img_path).convert()
         else:
@@ -23,7 +23,8 @@ class Engine1(object):
 def main():
     e1 = Engine1('shmup1 demo',640,480)
     fighterpath = 'art/fighter1.png'
-    img1 = pygame.image.load(fighterpath).convert()
+    img1 = e1.makeImg(fighterpath)
+    #img1 = pygame.image.load(fighterpath).convert()
     e1.screen.blit(img1,(0,0))
     e1.updateScreen()
     input('press ENTER to continue...\n')
