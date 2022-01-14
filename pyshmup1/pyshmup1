@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+'''
+nothing's panning out quite yet, lol.
+brianc2788@gmail.com
+'''
+import os,sys,pygame
+
+class Engine1(object):
+    def __init__(self,wtitle,screenw,screenh):
+        self.pygame = pygame
+        self.screen = pygame.display.set_mode((screenw,screenh))
+        pygame.display.set_caption(wtitle)
+    
+    def makeImg(img_path):
+        if os.path.isfile(img_path):
+            return pygame.image.load(img_path).convert()
+        else:
+            return None
+    
+    def updateScreen(object):
+        pygame.display.update()
+
+def main():
+    e1 = Engine1('shmup1 demo',640,480)
+    fighterpath = 'art/fighter1.png'
+    img1 = pygame.image.load(fighterpath).convert()
+    e1.screen.blit(img1,(0,0))
+    e1.updateScreen()
+    input('press ENTER to continue...\n')
+    e1.pygame.quit()
+    
+
+if __name__ == '__main__':
+    main()
