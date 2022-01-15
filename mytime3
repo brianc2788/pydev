@@ -15,7 +15,19 @@ import pygame,time
 def strSysTime():
     currentT = time.localtime()
     timeString = ''
-    timeString += str(currentT.tm_hour)+':'+str(currentT.tm_min)+':'+str(currentT.tm_sec)
+    # Use 12-hour format and fix mins and secs.
+    if currentT.tm_hour > 12:
+        timeString += str(currentT.tm_hour - 12)
+    else:
+        timeString += str(currentT.tm_hour)
+    if currentT.tm_min < 10:
+        timeString += ':0'+str(currentT.tm_min)
+    else:
+        timeString += ':'+str(currentT.tm_min)
+    if currentT.tm_sec < 10:
+        timeString += ':0'+str(currentT.tm_sec)
+    else:
+        timeString += ':'+str(currentT.tm_sec)
     return timeString
 
 # Pygame - init and create some glob vars. #
