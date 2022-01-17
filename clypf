@@ -27,14 +27,13 @@ try:
 		if not os.path.isfile(argPath):
 			print('file not found')
 		else:
-			rfile = open(argPath,mode='r')
+			fileString = ''
+			with open(argPath,mode='r') as rfile:
+				fileString = rfile.read()
 
-			if not rfile.readable():
+			if fileString == '':
 				print('file not readable')
 			else:
-				fileString = rfile.read()
-				rfile.close()
-
 				fileStringF = ''
 				for n in fileString:
 					if n != '\n':
