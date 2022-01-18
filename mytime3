@@ -24,6 +24,8 @@ def strSysTime():
     # Use 12-hour format and fix mins and secs.
     if currentT.tm_hour > 12:
         timeString += str(currentT.tm_hour - 12)
+    elif currentT.tm_hour == 0:
+        timeString += '12'
     else:
         timeString += str(currentT.tm_hour)
     if currentT.tm_min < 10:
