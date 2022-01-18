@@ -35,6 +35,7 @@ try:
 				print('file not readable')
 			else:
 				fileStringF = ''
+				#unwanted '\n' at the end of files; EOF?
 				if fileString.endswith('\n'):
 					fileStringF = fileString[:len(fileString)-1]
 				pyperclip.copy(fileStringF)
