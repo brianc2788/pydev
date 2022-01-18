@@ -63,7 +63,7 @@ while bRun:
     windowSurface.blit(blankSurf,(0,0))
     windowSurface.blit(timeSurf,(0,0))
     pygame.display.update()
-    appclock.tick(30) # update 30fps
+    appclock.tick(3) # update 3x/sec...3fps
 
 pygame.quit()
 exit()
