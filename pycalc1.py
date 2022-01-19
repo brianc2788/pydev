@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # pycalc1
-import string
 
 def Calculate(num1,op1,num2):
     num1 = int(num1)
@@ -11,26 +10,33 @@ def Calculate(num1,op1,num2):
         return str(num1-num2)
     elif op1 == '*':
         return str(num1*num2)
-    elif op1 == '/' & num2 != 0:
-        return str(num1/num2)
-
-string1 = '20+14'
-Num1 = ''
-Num2 = ''
-CalcOp = ''
-
-for x in string1:
-    if string1[x] != '+' & string1[x] != '-' & string1[x] != '*' & string1[x] != '/':
-        Num1.append(string1[x])
     else:
-        CalcOp = string1[x]
-        break
+        try:
+            return str(num1/num2)
+        except ZeroDivisionError:
+            print('cant divide by zero.')
 
-for x in string1:
-    if string1[x] != CalcOp:
-        continue
-    else:
-        x = x + 1
-        Num2.append(string1[x])
+print(
+'''
+Enter your operation and press return.
+Example: '2+2','12/3',etc...
+''')
 
-print(Calculate(Num1,CalcOp,Num2))
+while 1:
+    string1 = input('ENTER: ')
+    Num1 = ''
+    Num2 = ''
+    CalcOp = ''
+
+    for x in string1:
+        if x.isdigit():
+            Num1 += x
+        elif x == '/':
+            CalcOp = '/'
+        else:
+            CalcOp = x
+            break
+
+    Num2 = string1[string1.find(CalcOp)+1:]
+
+    print(Calculate(Num1,CalcOp,Num2))

@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+'''
+a better calc than pycalc1.py.
+brianc2788@gmail.com
+'''
+
+def strEvaluate(eq_str):
+	num1 = int(eq_str[0])
+	op = eq_str[1]
+	num2 = int(eq_str[2])
+
+	if op == '+':
+		return str(num1+num2)
+	elif op == '-':
+		return str(num1-num2)
+	elif op == '*':
+		return str(num1*num2)
+	else:
+		try:
+			ans = str(num1/num2)
+			if ans.endswith('.0'):
+				ans = ans[:ans.find('.')]
+			return ans
+		except ZeroDivisionError:
+			print('Can\'t divide by zero. Try again or ctrl+c to quit.')
+
+print("Enter an equation. Example: '2+2', '5*5', '12/3', etc.\nPress CTRL+C to QUIT.")
+
+while True:
+	try:
+		eq_str = input('ENTER: ')
+		eq_tuple = ()
+		if '+' in eq_str:
+			eq_tuple = eq_str.partition('+')
+		elif '-' in eq_str:
+			eq_tuple = eq_str.partition('-')
+		elif '*' in eq_str:
+			eq_tuple = eq_str.partition('*')
+		elif '/' in eq_str:
+			eq_tuple = eq_str.partition('/')
+
+		print(strEvaluate(eq_tuple))
+	except KeyboardInterrupt:
+		break
+	except EOFError:
+		break
