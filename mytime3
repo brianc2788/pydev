@@ -45,6 +45,7 @@ path = getoutput('which mytime3')
 path = path.strip('mytime3')
 path_font = path + 'resources/fonts/Pixeltype.ttf'
 font = pygame.font.Font(path_font,200)
+#set window size according to this blank string rendering.
 blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))
 windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
 appclock = pygame.time.Clock()
@@ -52,18 +53,24 @@ currentTime = ''
 
 # Main loop #
 bRun = 1
-while bRun:
-    # EVENTS #
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            bRun = 0
-            break
-    currentTime = strSysTime()
-    timeSurf = font.render(currentTime,False,(255,255,255),(0,0,0)).convert()
-    windowSurface.blit(blankSurf,(0,0))
-    windowSurface.blit(timeSurf,(0,0))
-    pygame.display.update()
-    appclock.tick(3) # update 3x/sec...3fps
-
+try:
+    while bRun:
+        # Event loop - get queue and check for quit. #
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                bRun = 0
+                break
+        #Call strSysTime(), render, clear, blit, update.
+        currentTime = strSysTime()
+        timeSurf = font.render(currentTime,False,(255,255,255),(0,0,0)).convert()
+        windowSurface.blit(blankSurf,(0,0))
+        windowSurface.blit(timeSurf,(0,0))
+        pygame.display.update()
+        appclock.tick(3) # update 3x/sec...3fps
+except BaseException:
+    if KeyboardInterrupt:
+        exit()
+    else:
+        exit()
 pygame.quit()
 exit()
