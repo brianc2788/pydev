@@ -13,6 +13,7 @@ Changelog;
 3.2 - Added exception handling
       and some comments.
     - Misc.
+    - Perf increase?
 
 Powered by Pygame.
 '''
@@ -48,7 +49,8 @@ pygame.display.set_caption('mytime v3.2')
 #solution so the script can be called from
 #the cmdline with any working directory. lol?
 path = getoutput('which mytime3')
-path = path.strip('mytime3')
+#path = path.strip('mytime3') #replace with the following slice. better perf?
+path = path[:-7]
 path_font = path + 'resources/fonts/Pixeltype.ttf'
 font = pygame.font.Font(path_font,200)
 #set window size according to this blank string rendering.
