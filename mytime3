@@ -10,6 +10,9 @@ Changelog;
 3.1 - Changed to 12-hour
     - fixed bugs displaying mins/secs
       below '10'.
+3.2 - Added exception handling
+      and some comments.
+    - Misc.
 
 Powered by Pygame.
 '''
@@ -40,7 +43,10 @@ def strSysTime():
 
 # Pygame - init and create some glob vars. #
 pygame.init()
-pygame.display.set_caption('mytime, version 3.1 - brianc2788@gmail.com')
+pygame.display.set_caption('mytime v3.2')
+#using subprocess.getoutput() - this is my
+#solution so the script can be called from
+#the cmdline with any working directory. lol?
 path = getoutput('which mytime3')
 path = path.strip('mytime3')
 path_font = path + 'resources/fonts/Pixeltype.ttf'
@@ -67,10 +73,14 @@ try:
         windowSurface.blit(timeSurf,(0,0))
         pygame.display.update()
         appclock.tick(3) # update 3x/sec...3fps
+#i did exceptions this way to kinda test if i was understanding them correctly...
+#getting there!
 except BaseException:
     if KeyboardInterrupt:
+        pygame.quit()
         exit()
     else:
+        pygame.quit()
         exit()
+
 pygame.quit()
-exit()
