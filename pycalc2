@@ -23,6 +23,7 @@ def strEvaluate(eq_str):
 			return ans
 		except ZeroDivisionError:
 			print('Can\'t divide by zero. Try again or ctrl+c to quit.')
+			return 0
 
 print("Enter an equation. Example: '2+2', '5*5', '12/3', etc.\nPress CTRL+C to QUIT.")
 
@@ -44,3 +45,5 @@ while True:
 		break
 	except EOFError:
 		break
+	except IndexError:
+		print('Invalid input.\nTry again or CTRL+C to QUIT.')
