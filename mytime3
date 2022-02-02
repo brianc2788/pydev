@@ -5,6 +5,10 @@ mytime - Version 3.1
 Better design resulting in better
 performance and readability.
 Clearer goals.
+Hopefully, my little clock program
+is good enough and i can rewrite it
+in cpp and using actual SDL, rather
+than pygame/bindings.
 
 Changelog;
 3.1 - Changed to 12-hour
@@ -14,6 +18,9 @@ Changelog;
       and some comments.
     - Misc.
     - Perf increase?
+
+Small edits are added often and
+only reflected in github's commits.
 
 Powered by Pygame.
 '''
@@ -49,12 +56,11 @@ pygame.display.set_caption('mytime v3.2')
 #solution so the script can be called from
 #the cmdline with any working directory. lol?
 path = getoutput('which mytime3')
-#path = path.strip('mytime3')                  #replace with the following slice. better perf?
+#path = path.strip('mytime3')                                               #Replace with the following slice. Better perf/eff?
 path = path[:-7]
 path_font = path + 'resources/fonts/Pixeltype.ttf'
 font = pygame.font.Font(path_font,200)
-#set window size according to this blank string rendering.
-blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))
+blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))            #Set window size.
 windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
 appclock = pygame.time.Clock()
 currentTime = ''
@@ -74,9 +80,8 @@ try:
         windowSurface.blit(blankSurf,(0,0))
         windowSurface.blit(timeSurf,(0,0))
         pygame.display.update()
-        appclock.tick(3) # update 3x/sec...3fps
-#i did exceptions this way to kinda test if i was understanding them correctly...
-#getting there!
+        appclock.tick(25)                                                   #Update 25x per second; same as old PAL format.
+
 except BaseException:
     if KeyboardInterrupt:
         pygame.quit()
