@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-mytime - Version 3.1
+mytime - Version 3.3
 --------------------
 Better design resulting in better
 performance and readability.
@@ -18,6 +18,18 @@ Changelog;
       and some comments.
     - Misc.
     - Perf increase?
+3.3 - Changed fps for the Nth time. I decided
+      to bump the fps up from 3 to 25. Figuring
+      the best trade-offs, chose 25 from old PAL
+      after using just 3fps. I thought 3 updates
+      per second would keep the seconds tick consistent
+      enough, which it did, but I didn't like the
+      long delay between the user triggering the
+      quit event and the app actually quitting.
+      This should be the last 'version'. A lot
+      of ideas for improvement, but will save that
+      for Cpp & SDL2 (or FLTK1.3?)
+      HUGE comment section - over...
 
 Small edits are added often and
 only reflected in github's commits.
@@ -51,7 +63,7 @@ def strSysTime():
 
 # Pygame - init and create some glob vars. #
 pygame.init()
-pygame.display.set_caption('mytime v3.2')
+pygame.display.set_caption('mytime v3.3')
 #using subprocess.getoutput() - this is my
 #solution so the script can be called from
 #the cmdline with any working directory. lol?
