@@ -1,0 +1,39 @@
+'''
+fun 10 minutes excersize.
+'''
+import time
+
+def autoPrint():
+    ltime = time.localtime()
+    printTime(ltime)
+
+def printTime(ltime):
+    timestr = ''
+    #concatonate time segments. Fix formatting, including changing to 12-hour.
+    #hours
+    if ltime.tm_hour <= 12:
+        timestr += str(ltime.tm_hour)
+    else:
+        timestr += str(ltime.tm_hour - 12)
+    timestr += ':'
+    #minutes
+    if ltime.tm_min > 9:
+        timestr += str(ltime.tm_min)
+    else:
+        timestr += '0'
+        timestr += str(ltime.tm_min)
+    timestr += ':'
+    #seconds
+    if ltime.tm_sec > 9:
+        timestr += str(ltime.tm_sec)
+    else:
+        timestr += '0'
+    timestr += str(ltime.tm_sec)
+
+    print(timestr)
+
+def main():
+    autoPrint()
+
+if __name__ == '__main__':
+    main()
