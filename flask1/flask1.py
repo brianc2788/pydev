@@ -7,4 +7,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def helloflask():
-	return 'Hello, Flask.'
+	return '<p>Hello, Flask.</p>'

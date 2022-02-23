@@ -1,5 +1,6 @@
 venv/
 *.pyc
+*.swp
 flask1/__pycache__/
 __pycache__/
 test_module/__pycache__/
