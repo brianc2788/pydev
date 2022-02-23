@@ -1,0 +1,6 @@
+venv/
+*.pyc
+flask1/__pycache__/
+__pycache__/
+test_module/__pycache__/
+pyshmup1/__pycache__/
