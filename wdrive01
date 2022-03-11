@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+'''
+wdrive01
+-----------------
+a script i use for wardriving.
+switches wifi interface (usr arg) to
+monitor mode and runs some child procs.
+
+- stop NetworkManager, wpa_supplicant services.
+- using ifconfig, iw:
+	- take down wifi iface.
+	- change hw addr, set monitor mode.
+	- put iface back up.
+- run airodump-ng & tshark.
+
+authored by brianc2788@gmail.com
+http://github.com/user5260/pyscripts/wardrive-script01
+'''
+import os,sys,subprocess,time
+#from time import localtime()
+
+# globs
+datearg = subprocess.getoutput('date +%b%d').casefold()
+iface = None
+
+# handle script args like a n0b.
+if len(sys.argv) != 2:
+	print('Usage: $> wdrive01 <interface>')
+	sys.exit()
+else:
+	iface = sys.argv[1]
+
+def main():
+	'''
+	command lists;
+	to be passed to Popen().
+	'''
+	ifconfigL = ['ifconfig',iface]		# append 'up' or 'down'
+	iwL = ['iw',iface,'set','type']		# append 'monitor' or 'managed'.
+	airodL = ['airodump-ng','--output-format','cap,csv','-w',datearg,iface]
+	#tshark = ['tshark','-i',iface]		# append any redirections, shopts, etc.
+
+	#dbug output
+	print(datearg,iface,sep=' -- ')
+
+if __name__ == '__main__':
+	main()
