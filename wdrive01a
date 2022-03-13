@@ -33,7 +33,7 @@ import sys,subprocess
 datearg = subprocess.getoutput('date +%b%d').casefold()		# gets output from 'date' & lowercase it.
 iface = None
 
-# Handle args like a n0b.
+# Handle cmdline args like a n0b.
 if len(sys.argv) != 2:
 	print('Usage: $> wdrive01 <interface>')
 	sys.exit()
@@ -42,19 +42,19 @@ else:
 
 # Glob. functions
 # ---------------
-def revertNic(if1):
-	SysCmd(['ifconfig',if1,'down'],False)
-	SysCmd(['iw',if1,'set','type','managed'],False)
-	SysCmd(['ifconfig',if1,'hw','ether','c8:b2:9b:62:70:0f'],False)
-	SysCmd(['macchanger','-p',if1],True)
-	SysCmd(['ifconfig',if1,'up'],False)
-	SysCmd(['service','NetworkManager','start'],False)
-
 def SysCmd(cmdlist, bPrint):
 	cProcess = subprocess.Popen(cmdlist,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 	if bPrint:
 		output = cProcess.stdout.read().decode()		#sys.getdefaultencoding()?
 		print(output)
+
+def revertNic(ifname):
+	SysCmd(['ifconfig',ifname,'down'],False)
+	SysCmd(['iw',ifname,'set','type','managed'],False)
+	SysCmd(['ifconfig',ifname,'hw','ether','c8:b2:9b:62:70:0f'],False)
+	SysCmd(['macchanger','-p',ifname],True)
+	SysCmd(['ifconfig',ifname,'up'],False)
+	SysCmd(['service','NetworkManager','start'],False)
 
 # main() function
 # ---------------
