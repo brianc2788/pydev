@@ -40,23 +40,34 @@ def SysCmd(cmdlist, bPrint):
 
 
 def main():
-	# '''
-	# command lists;
-	# to be passed to Popen().
-	# '''
-	# serviceL = ['service']				# append svc name & cmd.
-	# ifconfigL = ['ifconfig',iface]		# append 'up' or 'down'
-	# iwL = ['iw',iface,'set','type']		# append 'monitor' or 'managed'.
-	# airodL = ['airodump-ng','--output-format','cap,csv','-w',datearg,iface]
-	# #tshark = ['tshark','-i',iface]		# append any redirections, shopts, etc.
+	#lazy exception handling, for now.
+	try:
+		# disable network services/daemons.
+		SysCmd(['service','NetworkManager','stop'],False)
+		SysCmd(['service','wpa_supplicant','stop'],False)
 
-	# #dbug output
-	# print(datearg,iface,sep=' -- ')
-	# cmdL = ['ls','-l']
-	# SysCmd(cmdL)
+		# change wifi interface info.
+		SysCmd(['ifconfig',iface,'down'],False)
+		#SysCmd(['ifconfig',iface,'hw','ether','00:11:22:33:44:55'],False)		# using macchanger to generate random hw addr.
+		SysCmd(['macchanger','-a',iface],True)
+		SysCmd(['iw',iface,'set','type','monitor'],False)
+		SysCmd(['ifconfig',iface,'up'],False)
 
-	# disable network services/daemons.
-	SysCmd(['ls','-l','-h'],False)
+		# start capture utilities.
+		SysCmd(['airodump-ng','--output-format','cap,csv','-w',datearg,iface],True)
+	except Exception:
+		# User Quit OR something fails:
+		# Try to reset the interface and quit.
+		if KeyboardInterrupt:
+			SysCmd(['ifconfig',iface,'down'],False)
+			SysCmd(['iw',iface,'set','type','managed'],False)
+			SysCmd(['macchanger','-p',iface],True)
+			SysCmd(['ifconfig',iface,'up'],False)
+			SysCmd(['service','NetworkManager','start'],False)
+			sys.quit()
+		else:
+			SysCmd(['service','NetworkManager','restart'],False)
+			sys.quit()
 
 
 if __name__ == '__main__':
