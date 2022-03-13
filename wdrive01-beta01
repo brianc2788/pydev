@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+'''
+wdrive01
+-----------------
+a script i use for wardriving.
+switches wifi interface (usr arg) to
+monitor mode and runs some child procs.
+
+- stop NetworkManager, wpa_supplicant services.
+- using ifconfig, iw:
+	- take down wifi iface.
+	- change hw addr, set monitor mode.
+	- put iface back up.
+- run airodump-ng & tshark.
+
+authored by brianc2788@gmail.com
+http://github.com/user5260/pyscripts/wardrive-script01
+'''
+import os,sys,subprocess,time
+#from time import localtime()
+
+# globs
+datearg = subprocess.getoutput('date +%b%d').casefold()		# gets output from 'date' & lowercase it.
+iface = None
+
+# handle script args like a n0b.
+if len(sys.argv) != 2:
+	print('Usage: $> wdrive01 <interface>')
+	sys.exit()
+else:
+	iface = sys.argv[1]
+
+# function for running system commands.
+# bPrint - true to print output, false to suppress.
+def SysCmd(cmdlist, bPrint):
+	cProcess = subprocess.Popen(cmdlist,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+	if bPrint:
+		output = cProcess.stdout.read().decode()		#sys.getdefaultencoding()?
+		print(output)
+
+
+def main():
+	# '''
+	# command lists;
+	# to be passed to Popen().
+	# '''
+	# serviceL = ['service']				# append svc name & cmd.
+	# ifconfigL = ['ifconfig',iface]		# append 'up' or 'down'
+	# iwL = ['iw',iface,'set','type']		# append 'monitor' or 'managed'.
+	# airodL = ['airodump-ng','--output-format','cap,csv','-w',datearg,iface]
+	# #tshark = ['tshark','-i',iface]		# append any redirections, shopts, etc.
+
+	# #dbug output
+	# print(datearg,iface,sep=' -- ')
+	# cmdL = ['ls','-l']
+	# SysCmd(cmdL)
+
+	# disable network services/daemons.
+	SysCmd(['ls','-l','-h'],False)
+
+
+if __name__ == '__main__':
+	main()
