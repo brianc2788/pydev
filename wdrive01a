@@ -45,16 +45,16 @@ else:
 def SysCmd(cmdlist, bPrint):
 	cProcess = subprocess.Popen(cmdlist,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 	if bPrint:
-		output = cProcess.stdout.read().decode()		#sys.getdefaultencoding()?
+		output = cProcess.stdout.read().decode()
 		print(output)
 
 def revertNic(ifname):
 	SysCmd(['ifconfig',ifname,'down'],False)
 	SysCmd(['iw',ifname,'set','type','managed'],False)
 	SysCmd(['ifconfig',ifname,'hw','ether','c8:b2:9b:62:70:0f'],False)
-	SysCmd(['macchanger','-p',ifname],True)
+	#SysCmd(['macchanger','-p',ifname],True)
 	SysCmd(['ifconfig',ifname,'up'],False)
-	SysCmd(['service','NetworkManager','start'],False)
+	SysCmd(['service','NetworkManager','start'],False)						#handles wpa_supplicant.
 
 # main() function
 # ---------------
@@ -74,7 +74,7 @@ def main():
 
 		# start capture utilities.
 		sub_airodump = subprocess.Popen(['airodump-ng','--background','1','--output-format','cap,csv','-w',datearg,iface],shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-		print("Enter 'q' to quit\n")
+		print("Writing captures. Enter 'q' to quit\n")
 		input1 = ''
 		while(input1 != 'q'):
 			#run until user quits
@@ -83,6 +83,7 @@ def main():
 				sub_airodump.terminate()
 			else:
 				continue
+
 		revertNic(iface)
 
 	except BaseException:
