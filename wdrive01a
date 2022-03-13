@@ -2,19 +2,26 @@
 '''
 wdrive01
 -----------------
-a script i use for wardriving.
-switches wifi interface (usr arg) to
-monitor mode and runs some child procs.
+A script i use for wardriving.
 
-- stop NetworkManager, wpa_supplicant services.
-- using ifconfig, iw:
-	- take down wifi iface.
-	- change hw addr, set monitor mode.
-	- put iface back up.
-- run airodump-ng & tshark.
+This script will put the wifi NIC in monitor mode
+with a randomized hw address (w/real OUI) and start
+capturing packets being broadcasted over wifi with
+airodump-ng in .cap and .csv formats.
 
-authored by brianc2788@gmail.com
-http://github.com/user5260/pyscripts/wardrive-script01
+Happy to say, the script also cleans up after itself
+by hanging up airodump (run as a child process),
+reverting the NIC back to its permanent, burned-in hw
+address, setting it to managed mode, and finally,
+restoring NetworkManager.
+Wifi ops resume as normal and, in my case, re-authenticates
+with my router as the same client; having the same hw addr
+and recieving the same IP back from dynamic hosting.
+Exactly what I wanted with enough error handling for
+personal-use and no compromises made.
+
+Authored by brianc2788@gmail.com
+http://github.com/user5260/pyscripts/wdrive01a
 '''
 import os,sys,subprocess,time
 #from time import localtime()
@@ -29,6 +36,14 @@ if len(sys.argv) != 2:
 	sys.exit()
 else:
 	iface = sys.argv[1]
+
+def revertNic(if1):
+	SysCmd(['ifconfig',if1,'down'],False)
+	SysCmd(['iw',if1,'set','type','managed'],False)
+	SysCmd(['ifconfig',if1,'hw','ether','c8:b2:9b:62:70:0f'],False)
+	SysCmd(['macchanger','-p',if1],True)
+	SysCmd(['ifconfig',if1,'up'],False)
+	SysCmd(['service','NetworkManager','start'],False)
 
 # function for running system commands.
 # bPrint - true to print output, false to suppress.
@@ -54,20 +69,25 @@ def main():
 		SysCmd(['ifconfig',iface,'up'],False)
 
 		# start capture utilities.
-		SysCmd(['airodump-ng','--output-format','cap,csv','-w',datearg,iface],True)
-	except Exception:
-		# User Quit OR something fails:
-		# Try to reset the interface and quit.
+		sub_airodump = subprocess.Popen(['airodump-ng','--background','1','--output-format','cap,csv','-w',datearg,iface],shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+		print("Enter 'q' to quit\n")
+		input1 = ''
+		while(input1 != 'q'):
+			#run until user quits
+			input1 = input('Enter :')
+			if input1 == 'q':
+				sub_airodump.terminate()
+			else:
+				continue
+		revertNic(iface)
+
+	except BaseException:
 		if KeyboardInterrupt:
-			SysCmd(['ifconfig',iface,'down'],False)
-			SysCmd(['iw',iface,'set','type','managed'],False)
-			SysCmd(['macchanger','-p',iface],True)
-			SysCmd(['ifconfig',iface,'up'],False)
-			SysCmd(['service','NetworkManager','start'],False)
-			sys.quit()
+			sub_airodump.terminate()
+			revertNic(iface)
+			sys.exit()
 		else:
-			SysCmd(['service','NetworkManager','restart'],False)
-			sys.quit()
+			sys.exit()
 
 
 if __name__ == '__main__':
