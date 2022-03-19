@@ -67,7 +67,6 @@ def main():
 
 		# change wifi interface info.
 		SysCmd(['ifconfig',iface,'down'],False)
-		#SysCmd(['ifconfig',iface,'hw','ether','00:11:22:33:44:55'],False)		# using macchanger to generate random hw addr.
 		SysCmd(['macchanger','-a',iface],True)
 		SysCmd(['iw',iface,'set','type','monitor'],False)
 		SysCmd(['ifconfig',iface,'up'],False)
