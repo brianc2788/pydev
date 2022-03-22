@@ -27,7 +27,7 @@ def main():
 
 	if tarfile.is_tarfile(file1):
 		if file1.endswith('.gz'):
-			tar1 = tarfile.open(file1,mode='r:gz')		#many alts; incl gzopen().
+			tar1 = tarfile.open(file1,mode='r:gz')		#read mode w/gz compression. many alts; incl gzopen().
 		elif file1.endswith('.tar'):
 			tar1 = tarfile.open(file1,mode='r')
 		else:

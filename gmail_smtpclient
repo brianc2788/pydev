@@ -14,12 +14,12 @@ except Exception:
 try:
     smtp.ehlo()
 except Exception:
-    print('ehlo() has failed.')
+    print('smtp protocol initialization has failed.')
     quit()
 try:
     smtp.starttls()
 except Exception:
-    print('starttls() has failed.')
+    print('failed to start tls (secure sockets layer).')
     quit()
 
 # FUNCTION DEFINITIONS
@@ -27,7 +27,7 @@ def SmtpLogin(strName,strPassW):
     try:
         smtp.login(strName,strPassW)
     except Exception:
-        print('login() has failed.')
+        print('login has failed.')
         return False
     print('login success.')
     return True

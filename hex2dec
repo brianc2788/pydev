@@ -14,7 +14,7 @@ def main():
     # The interpreter is considered the cmd, which
     # makes the script the first arg (argv[0]).
 	if len(sys.argv) < 2:
-		print('**Usage - "./dec2hex <integer> <integer> ..."')
+		print('**Usage - "./hex2dec <number> <number> ..."')
 		sys.exit()
 	else:
 		nCount = 1

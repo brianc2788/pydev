@@ -1,29 +1,18 @@
 '''
 arp-mitm-detect.py
 ------------------
-With a LOT of help...
-from:
-Ethical Hacking- A Hands-on Introduction...
-by Daniel Graham
+"Detects" man-in-the-middle ARP-
+spoofing by checking to see if
+the hw address your packets are
+being sent to (e.g. your router)
+has changed. If it has, there is
+a chance an attacker is forwarding
+your packets to/from your device
+and your access point.
 
-http://www.github.com/user5260/pyscripts/arp-mitm-detect.py
+Note; this script is untested.
 
-[Description]
-Detects if you are being MITM'ed. No logging.
-
-I.e., detects if your packets are being routed
-by an attacker.
-I.e., detects if you're host's IP tables
-are being tampered with via MITM IP
-forwarding/arping.
-
-[Instructions/Usage]
-Run this script if you are connected
-via wi-fi.
-
-No news is good news; if the script
-exits without any output, it hasn't
-detected any potential ARP tampering.
+Authored by: brianc2788@gmail.com
 '''
 from scapy.all import sniff
 

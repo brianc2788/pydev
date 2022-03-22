@@ -8,7 +8,7 @@ import sys
 
 def main():
 	if len(sys.argv) < 2:
-		print('**Usage - "./dec2hex <integer> <integer> ..."')
+		print('**Usage - "./dec2hex <number> <number> ..."')
 		sys.exit()
 	else:
 		nCount = 1
