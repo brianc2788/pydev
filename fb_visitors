@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+'''
+fb_visitors
+-----------
+output names of past users to visit a facebook profile.
+
+Authored by brianc2788@gmail.com
+'''
+import sys, requests
+from bs4 import BeautifulSoup
+
+'''
+TODO:
+    - parse cmdline args.
+    - get profile url to check for past visitors.
+    - Get users (buddy_id, 15-digit ID numbers(?))
+    - append ID's to fb domain
+    - show corresponding profiles's names (title html tag)
+'''
+
+def main():
+    #define main
+
+if __name__ == '__main__':
+    main()
