@@ -6,20 +6,38 @@ output names of past users to visit a facebook profile.
 
 Authored by brianc2788@gmail.com
 '''
-import sys, requests
+import sys, requests, re
 from bs4 import BeautifulSoup
 
 '''
 TODO:
     - parse cmdline args.
     - get profile url to check for past visitors.
-    - Get users (buddy_id, 15-digit ID numbers(?))
-    - append ID's to fb domain
-    - show corresponding profiles's names (title html tag)
+    - Get users with reg. expressions (buddy_id, 15-digit ID numbers).
+    - look deeper into profile ID numbers & page elements.
+    - append ID's to fb domain.
+    - show corresponding profiles's names (title html tag).
+    - download & render some elements(?).
 '''
+def HandleCLIArgs():
+    if len(sys.argv) != 2:
+        print("Usage: >$ fb_visitors <profile_url>",end='\n')
+        sys.exit()
+
+def pageSoupify(urlstring):
+    # create http request & soup object.
+    try:
+        request = requests.get(urlstring)
+        soup = BeautifulSoup(request,'http.parser')
+    except any:
+        print('HTTP request and/or soupification has failed.')
+    
+    return soup
 
 def main():
-    #define main
+    HandleCLIArgs()
+    if sys.argv[1] != None:
+        pageSoupify(sys.argv[1])
 
 if __name__ == '__main__':
     main()

@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 '''
-Using OOP & pygame to create a game.
+Using OOP & pygame to create a vertical 'shoot-em-up'.
 
-Current TODO:
-Use separate python src to create object-oriented
-module & import it. Create a window, blit & render
-image to the screen. Exit when user triggers quit
-event.
+Currently no updating or game loop.
 
 brianc2788@gmail.com
 '''
