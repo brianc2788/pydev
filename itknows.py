@@ -7,4 +7,4 @@ while funny:
     if yourname == 'your name':
         funny = False
     else:
-        print('no, that\'s not it...')
+        print('no, that\'s not it... that\'s not...\nYOUR NAME\n...')
