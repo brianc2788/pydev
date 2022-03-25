@@ -67,8 +67,9 @@ pygame.display.set_caption('mytime v3.3')
 #using subprocess.getoutput() - this is my
 #solution so the script can be called from
 #the cmdline with any working directory. lol?
+#os.system(chroot) #??
 path = getoutput('which mytime3')
-#path = path.strip('mytime3')                                               #Replace with the following slice. Better perf/eff?
+#path = path.strip('mytime3')
 path = path[:-7]
 path_font = path + 'resources/fonts/Pixeltype.ttf'
 font = pygame.font.Font(path_font,200)
