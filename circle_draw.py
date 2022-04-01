@@ -21,16 +21,17 @@ the turtle module.
 brianc2788@gmail.com
 http://github.com/user5260/pyscripts
 '''
-import turtle
+import turtle,random
 
 t1 = turtle.Turtle()
 
 def drawCircle(x,y):
-	t1.setpos(x,(y+50))		# move y so circle center is on mouse.
-	t1.setheading(180)
+	cRadius = random.randint(15,100)	# Causes the circle to vary in size on each click; psuedo-randomly.
+	t1.setpos(x,(y+cRadius))		# Add cRadius, so the circle's center is on mouse.
+	t1.setheading(180)			# Sets the 'turtle' to turn 180 deg; faces left.
 	t1.pendown()
 	t1.begin_fill()
-	t1.circle(50)			# circle radius (50)
+	t1.circle(cRadius)
 	t1.end_fill()
 	t1.penup()				# leave pen up.
 
