@@ -16,6 +16,11 @@ Hoping to stop using BR files entirely;
 replacing them with csv files, spread-
 sheets, and/or database files.
 -------------------------
+Notes/Todo:
+	- Surrounded DETAILS column entries in d.quotes;
+	  may want to do the same for all columns.
+	- Possibly re-allow commas in DETAILS.
+-------------------------
 Authored by brianc2788@gmail.com
 '''
 import os,sys,re
@@ -88,7 +93,9 @@ for matchObj in searchList:
 		elif groupnum == 5:
 			csvString += matchObj.group(groupnum-1)
 		elif groupnum == (nGroupLast-1):
+			csvString += '"'
 			csvString += matchObj.group(groupnum).replace(',','.')	#NOTES/DETAILS Column: replace commas with periods.
+			csvString += '"'
 		else:
 			csvString += matchObj.group(groupnum)
 
