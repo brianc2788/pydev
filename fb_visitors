@@ -3,6 +3,8 @@
 fb_visitors
 -----------
 output names of past users to visit a facebook profile.
+Facebook profiles' page source contains ID numbers of
+other users that interact with the profile.
 
 Authored by brianc2788@gmail.com
 '''
@@ -14,6 +16,7 @@ TODO:
     - parse cmdline args.
     - get profile url to check for past visitors.
     - Get users with reg. expressions (buddy_id, 15-digit ID numbers).
+    - Regex may not be necessary if there's a good css selector available.
     - look deeper into profile ID numbers & page elements.
     - append ID's to fb domain.
     - show corresponding profiles's names (title html tag).
