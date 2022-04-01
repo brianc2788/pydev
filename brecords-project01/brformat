@@ -3,9 +3,6 @@
 br-format.py
 -------------------------
 Parse & extract data from "BR" files.
-In the future, be sure not to use commas
-in the "DETAILS" column when recording
-new data.
 -------------------------
 Authored by brianc2788@gmail.com
 '''
@@ -73,11 +70,13 @@ nGroupLast = 8
 for matchObj in searchList:
 	csvString = ''
 	for groupnum in range(nGroupFirst,nGroupLast):
-		# switch the order of BRECV and BRETRN. A matter of preference.
+		# Next 2 statements: switch the order of BRECV and BRETRN. A matter of preference.
 		if groupnum == 4:
 			csvString += matchObj.group(groupnum+1)
 		elif groupnum == 5:
 			csvString += matchObj.group(groupnum-1)
+		elif groupnum == (nGroupLast-1):
+			csvString += matchObj.group(groupnum).replace(',','.')	#replace any commas in 'NOTES/DETAILS' column.
 		else:
 			csvString += matchObj.group(groupnum)
 
