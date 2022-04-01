@@ -99,5 +99,4 @@ with open(newFileName,mode='w') as fOut:
 	else:
 		fOut.writelines(writeList)
 
-print("Saved file ",newFileName," to disk.\nExiting...")
 sys.exit(0)
