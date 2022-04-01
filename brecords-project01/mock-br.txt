@@ -2,20 +2,20 @@
 # MARCH 2022 - BOTTLE RECORD
 # ==============================================================================
 ################################################################################
-# PATHWAYS BUFFALO
-# SISTERS OF CHARITY HOSPITAL
-# 158 Holden St.
-# Buffalo, NY 14124
-# (716) 862-1330
-# Dr. Updike, Paul
+# xxxxxx
+# xxxxxx
+# xxxxxx
+# xxxxxx
+# xxxxxx
+# xxxxxx
 # ------------------------------------------------------------------------------
-# Brian Chiodo
-# Patient# 5260
-# +1716***6295
-# 3544 Abbott Rd
-# Orchard Park, NY 14127
-# Counselor: David Cultrara
-# Counselor Phone: 1-716-862-1561
+# Brian C
+# Patient# x
+# +x
+# xxxx
+# xxxxxx
+# xxxxxxa
+# xxxxx
 ################################################################################
 # <DATE>	The date; month and day.
 # <TIME>	Time of visit; 8:00AM - 12:59PM.
