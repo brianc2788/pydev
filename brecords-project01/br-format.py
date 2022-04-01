@@ -1,33 +1,49 @@
 '''
-format-br2csv.py
+br-format.py
 -------------------------
-Parse "Bottle-Record" text files & convert
-to csv format.
-
-TODO:
-	- Everything is functioning, but
-	  need to add i/o.
+Parse & extract data from "BR" files.
+In the future, be sure not to use commas
+in the "DETAILS" column when recording
+new data.
+Overall, very satisfied with this.
 -------------------------
 Authored by brianc2788@gmail.com
 '''
 import os,sys,re
 
-# Regex w/groupings
+'''
+Parse cmdline args.
+'''
+nArglen = len(sys.argv)
+if nArglen != 2:
+	print("Usage: $ python BR-formatter.py <BR-file>")
+	sys.exit(1)
+else:
+	filename = sys.argv[1]
+	if not os.path.isfile(os.path.join(os.getcwd(),filename)):
+		print("File not found.\nExiting...")
+		sys.exit(1)
+
+'''
+Declare Regex w/groupings.
+'''
 BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
 	(\d+\/\d+)				# Group 1 - Date
-	\t
+	\s
 	(\d{1,2}:\d{1,2})		# Group 2 - Time
-	\t
+	\s
 	(\d)					# Group 3 - B. Recieved
-	\t
+	\s
 	(\d)					# Group 4 - B. Returned
-	\t
+	\s
 	(LEFT|MID|RIGHT)		# Group 5 - Window
-	\t
-	(.+)				# Group 6 - Notes. Goes up to newline char unless re.DOTALL is used. Was using '[\w\s]+' but missed some notes.
+	\s
+	(.+)					# Group 6 - Details; without passing re.DOTALL, doesnt include newline chars.
 	)''',re.VERBOSE)
 
-filename = "mock-br.txt"	# hardcoded filename - for now.
+'''
+Prepare a list and readlines() from the br file.
+'''
 fileList = []				# list of lines to be read from file.
 
 with open(filename,mode='r') as iFile:
@@ -37,6 +53,10 @@ with open(filename,mode='r') as iFile:
 	else:
 		fileList = iFile.readlines()
 
+'''
+Create a list a re.match objects. Create a final list object
+made of 
+'''
 searchList = []
 for line in fileList:
 	if BRregex.search(line) != None:
@@ -46,22 +66,32 @@ for line in fileList:
 writeList = []
 writeList.append("DATE,TIME,BRETURNED,BRECIEVED,WINDOW,DETAILS\n")	# First line of CSV format - table columns.
 
+# Group indices that we want from the re.match object.
 nGroupFirst = 2
 nGroupLast = 8
 
 for matchObj in searchList:
 	csvString = ''
 	for groupnum in range(nGroupFirst,nGroupLast):
-		csvString += matchObj.group(groupnum)
+		# switch the order of BRECV and BRETRN. A matter of preference.
+		if groupnum == 4:
+			csvString += matchObj.group(groupnum+1)
+		elif groupnum == 5:
+			csvString += matchObj.group(groupnum-1)
+		else:
+			csvString += matchObj.group(groupnum)
+
 		if groupnum != (nGroupLast-1):
 			csvString += ','
 		else:
 			csvString += '\n'
 	writeList.append(csvString)
 
+# Using a slice of the original filename string; sans extension.
 newFileName = filename[:-3]
 newFileName += 'csv'
 
+# Create/write operation.
 with open(newFileName,mode='w') as fOut:
 	if not fOut.writable():
 		print("Couldn't create/open file for writing. Aborting operations...")
@@ -70,3 +100,4 @@ with open(newFileName,mode='w') as fOut:
 		fOut.writelines(writeList)
 
 print("Saved file ",newFileName," to disk.\nExiting...")
+sys.exit(0)
