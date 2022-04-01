@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+'''
+mytime - Python script
+----------------------------------------
+boredom was a very motivating
+factor.
+----------------------------------------
+brianc2788@gmail.com
+'''
+import subprocess
+
+#convert hour value for 12-hour format.
+def convHour(hour24):
+    ihour24 = int(hour24)
+    if ihour24 > 12:
+    	return str(ihour24-12)
+    elif ihour24 == 0:
+        return '12'
+    else:
+    	return str(ihour24)
+
+#decode bytes to a string.
+pHour = subprocess.Popen(['date','+%H'],shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+hourChar = pHour.stdout.read()
+hourChar = hourChar.decode('utf-8')
+hourChar = convHour(hourChar)
+
+pMinSec = subprocess.Popen(['date','+:%M:%S'],shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+minsecChar = pMinSec.stdout.read()
+minsecChar = minsecChar.decode('utf-8')
+
+timeString = hourChar+minsecChar
+
+print(timeString)
+#alternatively, import sys and...
+#sys.stdout.write()
+#sys.stdout.flush()
