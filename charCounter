@@ -1,22 +1,12 @@
+#!/usr/bin/env python3
 '''
-charCounter2.py
---------------
-this is an improved version of
-the original charCounter.py.
-Rid of some redundancies and
-more informative final results.
-
-UPDATE: appears to work; have done
-some manual counting and other work
-to verify the results of this script
-and, although not a very rigorous
-verification thus far, it appears
-to work. fingers crossed.
-UPDATE: Total Character results are accurate.
-UPDATE: Cleaned up the code a bit and added
-'whitespace chars' to the final report.
-
-github.com/user5260/pyscripts/charCounter.py
+charCounter
+-----------
+Prompts the user for a plaintext file,
+prints a detailed report of character
+types present.
+-----------
+Authored by brianc2788@gmail.com
 '''
 import os,re
 

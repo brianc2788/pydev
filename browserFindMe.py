@@ -2,21 +2,12 @@
 '''
 browserFindMe.py
 ----------------
-Run this Python script to open your
-web browser and find my facebook,
-github, and email.
-Messing around with webbrowser module;
-preparing to use things like this with
-Selenium.
-
-In other words,
-This app will open the user's browser
-with tabs open to my facebook, my github,
-and a google search for my username.
-Lastly, also opens the user's email client;
-for me, that is Thunderbird. Opens a new
-draft email composition with my email
-address as the reciever.
+Overall, opens a webrowser and makes 3 requests
+in 3 separate tabs. These 3 URIs request my
+Facebook profile, my github user page, and a
+Google search of a common username that I use.
+Also opens the user's default MIME application
+to compose an e-mail to my gmail account.
 
 brianc2788@gmail.com
 '''
@@ -26,13 +17,8 @@ import webbrowser
 webbrowser.open('https://www.facebook.com/brianc2788')
 # GitHub.
 webbrowser.open_new_tab('https://www.github.com/user5260')
-# Email me. Opens the user's mail client; for me, that's Thunderbird.
-webbrowser.open('mailto:brianc2788@gmail.com')
-
-# Open google with a search for my name.
+# Open google with a search for my username.
 webbrowser.open_new_tab('https://www.google.com/search?q="brianc2788"')
-''' kinda surprised at the results here. some of my other accounts come up,
-like for kaggle. I guess I shouldnt be surprised; google employs excellent
-web crawlers and I use, basically, the same, exact username for most of
-my accounts.
-'''
+
+# Opens the user's mail client; for me, that's Thunderbird.
+webbrowser.open('mailto:brianc2788@gmail.com')
