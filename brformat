@@ -25,7 +25,7 @@ Parse cmdline args.
 '''
 nArglen = len(sys.argv)
 if nArglen != 2:
-	print("Usage: $ python BR-formatter.py <BR-file>")
+	print("Usage: $ brformat <br-file>")
 	sys.exit(1)
 else:
 	filename = sys.argv[1]
