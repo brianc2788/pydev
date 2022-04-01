@@ -71,11 +71,11 @@ for line in fileList:
 	if BRregex.search(line) != None:
 		searchList.append(BRregex.search(line))
 
-# Create final list object to pass to fileObject.writelines().
+# Create a final list object to pass to fileObject.writelines().
 writeList = []
 writeList.append("DATE,TIME,BRETURNED,BRECIEVED,WINDOW,DETAILS\n")	# First line of CSV format - table columns.
 
-# Group indices that we want from the re.match object.
+# Group numbers/indices that we want from the re.match object.
 nGroupFirst = 2
 nGroupLast = 8
 
@@ -88,7 +88,7 @@ for matchObj in searchList:
 		elif groupnum == 5:
 			csvString += matchObj.group(groupnum-1)
 		elif groupnum == (nGroupLast-1):
-			csvString += matchObj.group(groupnum).replace(',','.')	#replace any commas in 'NOTES/DETAILS' column.
+			csvString += matchObj.group(groupnum).replace(',','.')	#NOTES/DETAILS Column: replace commas with periods.
 		else:
 			csvString += matchObj.group(groupnum)
 
@@ -102,7 +102,7 @@ for matchObj in searchList:
 newFileName = filename[:-3]
 newFileName += 'csv'
 
-# Create/write operation.
+# Create/write operation. Will clobber/overwrite existing files with the same name.
 with open(newFileName,mode='w') as fOut:
 	if not fOut.writable():
 		print("Couldn't create/open file for writing. Aborting operations...")
