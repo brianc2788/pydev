@@ -17,11 +17,11 @@
 # xxxxxx
 # xxxxxx
 ################################################################################
-# <DATE>	The date; month and day.
-# <TIME>	Time of visit; 8:00AM - 12:59PM.
-#  <REC>	Number of bottles recieved.
-# <RTRN>	Number of bottles returned.
-# <WINDOW>	LEFT, MIDDLE, or RIGHT - From the patient perspective.
+# <DATE>	Date.
+# <TIME>	Time.
+#  <REC>	Number.
+# <RTRN>	Number.
+# <WINDOW>	LEFT, MIDDLE, or RIGHT.
 # <DETAILS>	Notable details.
 # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

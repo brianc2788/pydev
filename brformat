@@ -1,8 +1,20 @@
 #!/usr/bin/env python3
 '''
-br-format.py
+brformat.py
 -------------------------
+Description:
 Parse & extract data from "BR" files.
+Create csv file, write header & rows.
+-------------------------
+Background:
+BR files are records that use a custom,
+plaintext-format. Basically, just text
+decorated with various symbols for read-
+ability. Somewhat inconsistent and very
+much a pain to parse.
+Hoping to stop using BR files entirely;
+replacing them with csv files, spread-
+sheets, and/or database files.
 -------------------------
 Authored by brianc2788@gmail.com
 '''
