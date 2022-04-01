@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 br-format.py
 -------------------------
@@ -5,7 +6,6 @@ Parse & extract data from "BR" files.
 In the future, be sure not to use commas
 in the "DETAILS" column when recording
 new data.
-Overall, very satisfied with this.
 -------------------------
 Authored by brianc2788@gmail.com
 '''
@@ -29,15 +29,15 @@ Declare Regex w/groupings.
 '''
 BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
 	(\d+\/\d+)				# Group 1 - Date
-	\s
+	\s+
 	(\d{1,2}:\d{1,2})		# Group 2 - Time
-	\s
+	\s+
 	(\d)					# Group 3 - B. Recieved
-	\s
+	\s+
 	(\d)					# Group 4 - B. Returned
-	\s
+	\s+
 	(LEFT|MID|RIGHT)		# Group 5 - Window
-	\s
+	\s+
 	(.+)					# Group 6 - Details; without passing re.DOTALL, doesnt include newline chars.
 	)''',re.VERBOSE)
 
