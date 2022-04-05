@@ -14,6 +14,6 @@ class CalObj:
         self.year = year
         self.FirstWeekday = ''
         self.leapyear = False
-        self.
-    
-    def 
+
+    def f1(self):
+        print('function 1')

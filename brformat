@@ -47,7 +47,7 @@ BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
 	\s+
 	(\d)					# Group 4 - B. Returned
 	\s+
-	(LEFT|MID|RIGHT)		# Group 5 - Window
+	(LEFT|MID|MIDDLE|RIGHT)		# Group 5 - Window
 	\s+
 	(.+)					# Group 6 - Details; without passing re.DOTALL, doesnt include newline chars.
 	)''',re.VERBOSE)
