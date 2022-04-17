@@ -21,14 +21,17 @@ if len(sys.argv) < 2:
 arglen = len(sys.argv)
 hexargs = []
 
+# Filter script name out of args.
 for arg in sys.argv:
     if 'hexadd' not in arg:
         hexargs.append(str(arg))
 
+# Create sum variable and store results of
+# addhex() in it. Loop through all inputs.
 fullsum = '0'
-
 for num in hexargs:
     fullsum = addhex(hex(int(fullsum)),num)
 
+# Report in both base 10 & 16.
 print('decimal sum: ',fullsum)
 print('hex sum :    ',hex(int(fullsum)))
