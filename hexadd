@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+'''
+Takes Hex numbers as args.
+Adds a series of hex numbers.
+-----------------------------
+Authored by brianc2788@gmail.com
+'''
+import sys
+
+
+# Function. Returns sum of hex numbers.
+def addhex(hex1,hex2):
+    hexsum = int(hex1,16) + int(hex2,16)
+    return str(hexsum)
+
+# If no args, print usage & exit.
+if len(sys.argv) < 2:
+    print('Usage: >$ hexadd <arg> ... <argN>')
+    sys.exit(0)
+
+arglen = len(sys.argv)
+hexargs = []
+
+for arg in sys.argv:
+    if 'hexadd' not in arg:
+        hexargs.append(str(arg))
+
+fullsum = '0'
+
+for num in hexargs:
+    fullsum = addhex(hex(int(fullsum)),num)
+
+print('decimal sum: ',fullsum)
+print('hex sum :    ',hex(int(fullsum)))
