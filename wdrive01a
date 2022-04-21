@@ -3,6 +3,12 @@
 wdrive01
 -----------------
 A script i use for wardriving.
+N00b 8021x pentesting.
+
+NOTE: Because of the privileges needed to manip-
+ulate the NIC, run as (temp solution):
+>$ sudo $(which wd01b) <interface>
+I mean, unless you wanna type the entire path...
 
 This script will put the wifi NIC in monitor mode
 with a randomized hw address (w/real OUI) and start
