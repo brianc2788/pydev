@@ -3,9 +3,13 @@ README.md - "pyscripts" git repository
 - using html tags
 http://github.com/user5260/pyscripts/README.md
 --->
-<h2><strong>README.md - "pyscripts" git repository</strong></h2>
-<p><em>Collection of scripts & projects using Python3.x</em></p>
-<p><a href="https://github.com/user5260/pyscripts">pyscripts repo</a></p>
-<hr>
-<b>Authored by: </b><a href=mailto:brianc2788@gmail.com>Brian Chiodo</a><br>
-<hr>
+#### Pyscripts Git Repo
+**Now Serving:** *Python 3.x*
+---
+*Project Ideas*
+- Combine all conversion scripts (*dec2hex,hex2dec,etc*) into a single cmdline program; maybe use ArgParse.
+- Finish the shmup demo.
+- Finish OOP Calendar GUI.
+- More web scrapers (youtube video downloader?)
+- Facebook - User ID's embedded in src. (*fb_visitors*)
+- Think of more project ideas...
