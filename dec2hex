@@ -12,11 +12,14 @@ def main():
 		sys.exit()
 	else:
 		nCount = 1
-		while nCount < len(sys.argv):
-			num1 = int(sys.argv[nCount])
-			print('dec: '+str(num1))
-			print('hex: '+str(hex(num1)),end='\n\n')
-			nCount += 1
+		try:
+			while nCount < len(sys.argv):
+				num1 = int(sys.argv[nCount])
+				print('dec: '+str(num1))
+				print('hex: '+str(hex(num1)),end='\n\n')
+				nCount += 1
+		except Exception:
+			sys.exit(1)		#whatever
 
 if __name__ == '__main__':
 	main()
