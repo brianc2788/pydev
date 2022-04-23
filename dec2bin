@@ -1,0 +1,29 @@
+#! /usr/bin/env python3
+'''
+dec2bin - python3x
+------------------
+Used dec2hex as a template.
+Changed 2 lines and added an exception handler.
+Hopefully, I remember to do the same with the
+others; some user inputs (not mine, of course)
+could be a problem.
+'''
+import sys
+
+def main():
+	if len(sys.argv) < 2:
+		print('**Usage - "./dec2bin <number> <number> ..."')
+		sys.exit()
+	else:
+		nCount = 1
+		try:
+			while nCount < len(sys.argv):
+				num1 = int(sys.argv[nCount])
+				num1 = bin(num1)
+				print(num1[2:])		# 'Slice' off the first two chars (0b)
+				nCount += 1
+		except Exception:
+			sys.exit(1)				# screw the dumba** user who tried to enter a char. just exit.
+
+if __name__ == '__main__':
+	main()
