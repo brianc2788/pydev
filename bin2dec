@@ -1,0 +1,24 @@
+#! /usr/bin/env python3
+'''
+bin2dec - python3x
+------------------
+Same as dec2bin, but reverse...
+'''
+import sys
+
+def main():
+	if len(sys.argv) < 2:
+		print('**Usage - "./bin2dec <number> <number> ..."')
+		sys.exit()
+	else:
+		nCount = 1
+		try:
+			while nCount < len(sys.argv):
+				binNum = int(sys.argv[nCount],2)
+				print(binNum)
+				nCount += 1
+		except Exception:
+			sys.exit(1)				# pity the fool that enters a non-int. just exit with 1.
+
+if __name__ == '__main__':
+	main()
