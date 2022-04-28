@@ -1,40 +1,19 @@
 #!/usr/bin/env python3
 '''
-mytime - Version 3.3
+mytime - Version $FiNull
 --------------------
-Better design resulting in better
-performance and readability.
-Clearer goals.
-Hopefully, my little clock program
-is good enough and i can rewrite it
-in cpp and using actual SDL, rather
-than pygame/bindings.
+Simple digital clock GUI.
 
-Changelog;
-3.1 - Changed to 12-hour
-    - fixed bugs displaying mins/secs
-      below '10'.
-3.2 - Added exception handling
-      and some comments.
-    - Misc.
-    - Perf increase?
-3.3 - Changed fps for the Nth time. I decided
-      to bump the fps up from 3 to 25. Figuring
-      the best trade-offs, chose 25 from old PAL
-      after using just 3fps. I thought 3 updates
-      per second would keep the seconds tick consistent
-      enough, which it did, but I didn't like the
-      long delay between the user triggering the
-      quit event and the app actually quitting.
-      This should be the last 'version'. A lot
-      of ideas for improvement, but will save that
-      for Cpp & SDL2 (or FLTK1.3?)
-      HUGE comment section - over...
+I would tell you that I used pygame, but pygame
+insists on telling you itself...
+(Btw, how to pipe stdout somewhere,
+like os.devnull [/dev/null on *nix]?)
+os.pipe()?
+subprocess.PIPE?
+loldotPIPE?
 
-Small edits are added often and
-only reflected in github's commits.
-
-Powered by Pygame.
+Authored by brianc2788@gmail.com
+http://github.com/user5260/pyscripts/mytime3
 '''
 from os import path as ospath
 from sys import exit
@@ -63,16 +42,10 @@ def strSysTime():
 
 # Pygame - init and create some glob vars. #
 pygame.init()
-pygame.display.set_caption('mytime v3.3')
-#using subprocess.getoutput() - this is my
-#solution so the script can be called from
-#the cmdline with any working directory. lol?
-#os.system(chroot) #??
+pygame.display.set_caption('mytime version: $FiNull')
 path = getoutput('which mytime3')
-#path = path.strip('mytime3')
-#path = path.basename
-path = path[:-7]
-path_font = path + 'resources/fonts/Pixeltype.ttf'
+path = ospath.dirname(path)
+path_font = path + '/resources/fonts/Pixeltype.ttf'
 font = pygame.font.Font(path_font,200)
 blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))            #Set window size.
 windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
@@ -99,9 +72,9 @@ try:
 except BaseException:
     if KeyboardInterrupt:
         pygame.quit()
-        exit()
+        exit(0)
     else:
         pygame.quit()
-        exit()
+        exit(1)
 
 pygame.quit()
