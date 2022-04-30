@@ -95,9 +95,9 @@ def main():
 		if KeyboardInterrupt:
 			sub_airodump.terminate()
 			revertNic(iface)
-			sys.exit()
+			sys.exit(0)
 		else:
-			sys.exit()
+			sys.exit(1)
 
 
 if __name__ == '__main__':
