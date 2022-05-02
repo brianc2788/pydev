@@ -13,13 +13,19 @@ TODO:	- Add performance timer.
 Authored by brianc2788@gmail.com
 http://github.com/user5260/pyscripts/FUZZ&FUZ2Z (jokes)
 '''
-import sys,requests
+import sys
+
+try:
+	import requests
+except ImportError:
+	print('Please install the requests module.')
 
 # Handle args #
 if len(sys.argv) == 1:
 	print('Usage: >$ urlfuzz <url>')
 	print("Enter <url> in the form 'protocol://host.tld/")
 	print('Be sure to include a trailing forward slash (/).')
+	print('Don\'t use https scheme; use http.')
 else:
 	base_url = sys.argv[1]
 
