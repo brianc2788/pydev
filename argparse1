@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+'''
+quick argparse-ing.
+nearly cut & paste from the docs.
+this is a very basic setup for a
+very robust module.
+'''
+import sys,argparse
+
+# '-h' and '--help' are added in the ctor.
+parser = argparse.ArgumentParser(prog='ArgParseOne')
+# Add SOURCE argument.
+parser.add_argument(
+	'-s','--src',
+	type=str,
+	help='IPv4 Source Address.'
+)
+
+# Add DESTINATION argument.
+parser.add_argument(
+	'-d','--dest',
+	type=str,
+	help='IPv4 Destination Address.'
+)
+
+args = parser.parse_args()
+
+print('Got src: {0}\nGot dest: {1}'.format(args.src,args.dest))
