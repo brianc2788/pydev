@@ -1,6 +1,5 @@
 '''
-Using OOP & pygame to create a game
-engine tuned for vertical shmups.
+Engine1 class. Using pygame.
 
 Authored by: brianc2788@gmail.com
 '''
