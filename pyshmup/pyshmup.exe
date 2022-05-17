@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+'''
+Retro, 2D, shoot-em-up styled game demo written in Python3.
+Authored by brianc2788@gmail.com
+Using Apache 2.0 Open Source Software license.
+http://github.com/user5260/user5260/licenses/apache2-license.txt
+
+CURRENT STATE:
+    - Just loads, converts, and blits the the image a single time
+      and holds. No event handler; user must press enter from the
+      shell.
+    - To run, navigate to the directory containing the executable
+      otherwise create a symlink/shortcut.
+'''
+import os
+import eng1
+
+def main():
+    e1 = eng1.Engine1('shmup1 demo',640,480)
+    fighterpath = os.path.join(os.getcwd(),'art','fighter1.png')
+    img1 = e1.makeImg(fighterpath)
+    #img1 = pygame.image.load(fighterpath).convert()
+    e1.screen.blit(img1,(0,0))
+    e1.updateScreen()
+    input('press ENTER to continue...\n')
+    e1.quitPygame()
+    
+
+if __name__ == '__main__':
+    main()
