@@ -2,11 +2,14 @@
 '''
 clypf
 -----
-Copies text/files to the clipboard.
+Copies text from files to your clipboard instance.
+Requires pyperclip.
 Authored by brianc2788@gmail.com
+Github: http://github.com/user5260
 '''
 import os,sys,pyperclip
 
+""" TODO: Narrow the try block to just where it's needed. """
 try:	
 	if len(sys.argv) == 1:
 		print(' Help/Usage:\n',
@@ -16,11 +19,11 @@ try:
 	elif len(sys.argv) == 2:
 		argPath = sys.argv[1]
 
-		# if arg is not an absolute path, make it so.
+		""" Check for abs path """       # Use abspath()?
 		if not os.path.isabs(argPath):
 			argPath = os.path.join(os.getcwd(),argPath)
 
-		#DEBUG OUTPUT
+		""" DEBUG """
 		#print('current dir: '+os.getcwd())
 		#print('target file: '+argPath)
 
@@ -35,12 +38,13 @@ try:
 				print('file not readable')
 			else:
 				fileStringF = ''
-				#unwanted '\n' at the end of files; EOF?
+				
+				""" Remove trailing newline(s). """
 				if fileString.endswith('\n'):
 					fileStringF = fileString[:len(fileString)-1]
 				pyperclip.copy(fileStringF)
 
-				# DEBUG output: print a sitrep.
+				""" DEBUG output: print a sitrep. """
 				#print('------------------------------\n',
                 #      'COPIED TO CLIPBOARD:\n',
                 #      fileStringF)
