@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""
+enter a string, get html elements (decimal)
+back; concatonated together.
+
+TODO
+- get argparse to print help instead of an error if no args.
+- return a string, replacing the user's with the
+  html code element equivalent.
+- let user choose to output decimal or hex.
+- implement '-o' option for file to write to.
+
+brianc2788@gmail.com
+http://github.com/user5260
+"""
+import argparse
+from sys import getdefaultencoding
+
+""" Parse arguments """
+argParser = argparse.ArgumentParser(
+	prog='str2html',
+	description='Convert strings to html code elements.',
+	epilog='Authored by brianc2788@gmail.com')
+
+argParser.add_argument(
+	'string',
+	type=str,
+	help='User\'s input string')
+
+argParser.add_argument(
+	'-o','--out',
+	type=str,
+	help=r'(Unimplemented) File to write to.')
+
+""" Main program loop """
+def main():
+	args = argParser.parse_args()
+	#DEBUG
+	print("Got '{}'".format(args.string))
+	#replace characters with html elements.
+	#example: "a" = "&#97;"
+
+if __name__ == '__main__':
+	main()
