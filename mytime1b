@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
 '''
-fun 10 minutes excersize.
+Same as other mytimes.
+Just using a different method for getting
+system time, I think.
 '''
 import time
 
