@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-mytime - Version $FiNull
+mytime3
 --------------------
 Simple digital clock GUI.
 
@@ -24,7 +24,7 @@ import pygame
 def strSysTime():
     currentT = localtime()
     timeString = ''
-    # Use 12-hour format and fix mins and secs.
+    """ Use 12-hour format and fix mins and secs. """
     if currentT.tm_hour > 12:
         timeString += str(currentT.tm_hour - 12)
     elif currentT.tm_hour == 0:
