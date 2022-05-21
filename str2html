@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 """
-enter a string, get html elements (decimal)
-back; concatonated together.
+Convert the user's string into HTML character code
+entities equivalent to their decimal values.
+Concieved for testing a website's input sanitizer.
 
 TODO
 - get argparse to print help instead of an error if no args.
-- return a string, replacing the user's with the
-  html code element equivalent.
 - let user choose to output decimal or hex.
 - implement '-o' option for file to write to.
 
-brianc2788@gmail.com
+Authored by brianc2788@gmail.com
 http://github.com/user5260
 """
 import argparse
-from sys import getdefaultencoding
 
 """ Parse arguments """
 argParser = argparse.ArgumentParser(
@@ -30,15 +28,17 @@ argParser.add_argument(
 argParser.add_argument(
 	'-o','--out',
 	type=str,
-	help=r'(Unimplemented) File to write to.')
+	help=r'(Not Implemented) File to write to.')
 
 """ Main program loop """
 def main():
 	args = argParser.parse_args()
-	#DEBUG
-	print("Got '{}'".format(args.string))
-	#replace characters with html elements.
-	#example: "a" = "&#97;"
+
+	""" Loop through the user's string & produce converstion output. """
+	pref = '&#'
+	suff = ';'
+	for char in bytes(args.string,'utf-8'):
+		print(f'{pref}{char}{suff}',end='')
 
 if __name__ == '__main__':
 	main()
