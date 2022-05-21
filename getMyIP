@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 '''
-getMyIP - python script, web scraper.
+getMyIP - choose 1 of 2 web API's
+that return a clean string.
 -----------------------
 Reports your external IP address.
 - Powered by 'http://ip4.top10vpn.com/'
@@ -10,11 +11,13 @@ the site 'ip4.me/api/'.
 '''
 import sys,requests
 
-# alternate - 'https://ip4.me/api/'
-webServiceAddr = 'https://ip4.top10vpn.com/'
+#url1 = 'https://ip4.top10vpn.com/'
+#top10vpn.com stopped working. try http?
 
-httpRequest = requests.get(webServiceAddr)
+url2 = 'https://ip4.me/api/'
 
-IPstr = httpRequest.text
+httpRequest = requests.get(url2)
 
-print(IPstr)
+api_resp = httpRequest.text
+
+print(api_resp)
