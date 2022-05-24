@@ -2,21 +2,18 @@
 '''
 ceasarEncoder.py
 --------------
-A Ceasar Cryptographic Codec.
+Notes:
+this is an early python script of mine
+and i think i went out of my way to use dicts
+and file io for my own practice.
 
-These are my early attempts.
-I am reading Cracking Codes with
-Python and just finished the
-chapter explaining the ceasar
-cipher, without code.
-I think I see where this is
-going...
+all of that, plus i was trying to write this
+cipher before seeing any example implementations.
 
-done, it works (mostly, ha).
-time to read the book and learn
-from a pro.
+the ceasar cipher is the basis for rotational
+ciphers, such as ROT13.
 
-github.com/user5260
+http://github.com/user5260/user5260
 '''
 import os,sys
 # Ceasar Encoder Dictionary
