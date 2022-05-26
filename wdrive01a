@@ -65,20 +65,25 @@ def revertNic(ifname):
 # main() function
 # ---------------
 def main():
-	#lazy exception handling, for now.
 	try:
-		# disable network services/daemons.
+		""" Disable conflicting network services/daemons. """
 		SysCmd(['service','NetworkManager','stop'],False)
 		SysCmd(['service','wpa_supplicant','stop'],False)
 
-		# change wifi interface info.
+		""" Temp. take down NIC to spoof its MAC & switch to monitor mode. """
 		SysCmd(['ifconfig',iface,'down'],False)
 		SysCmd(['macchanger','-a',iface],True)
 		SysCmd(['iw',iface,'set','type','monitor'],False)
 		SysCmd(['ifconfig',iface,'up'],False)
 
-		# start capture utilities.
-		sub_airodump = subprocess.Popen(['airodump-ng','--background','1','--output-format','cap,csv','-w',datearg,iface],shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+		""" Create child process for airodump-ng. """
+		sub_airodump = subprocess.Popen(
+			['airodump-ng',
+			'--background','1',
+			'--output-format','cap,csv',
+			'-w',datearg,iface]
+			,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+
 		print("Writing captures. Enter 'q' to quit\n")
 		input1 = ''
 		while(input1 != 'q'):
