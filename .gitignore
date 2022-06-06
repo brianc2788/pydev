@@ -6,3 +6,4 @@ __pycache__/
 test_module/__pycache__/
 pyshmup1/__pycache__/
 .ipynb_checkpoints/
+.vs/
