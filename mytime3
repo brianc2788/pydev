@@ -46,7 +46,7 @@ pygame.init()
 pygame.display.set_caption('mytime3')
 basepath = getoutput('which mytime3')
 basepath = path.dirname(basepath)
-path_font = basepath + '/resources/fonts/Pixeltype.ttf'
+path_font = basepath + path.join('resources','fonts','Pixeltype.ttf')
 font = pygame.font.Font(path_font,200)
 blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))  #placeholder
 windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
