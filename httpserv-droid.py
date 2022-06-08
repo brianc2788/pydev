@@ -45,8 +45,8 @@ except BaseException:
 
 """ Run the server until the user quits. """
 try:
-    server.serve_forever()
     print('Listening for HTTP requests on port {}...'.format(port))
+    server.serve_forever()
 except BaseException:
     if KeyboardInterrupt:
         exit(0)
