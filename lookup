@@ -26,10 +26,10 @@ def main():
         print('USAGE:\n$> lookup <word1> <word2> <...>')
     
     else:
-        iterCount = 1
-        while iterCount < len(sys.argv):
+        nArgs = 1
+        while nArgs < len(sys.argv):
             """ Request the URL; pass text to bs4. """
-            lookupWord = sys.argv[iterCount]
+            lookupWord = sys.argv[nArgs]
             webAddr = 'https://www.merriam-webster.com/dictionary/'+lookupWord+'/'
             '''
              Handle exception in case of no internet connection.
@@ -56,7 +56,7 @@ def main():
                 for r in resultList:
                     print(entryNum,r.getText())
                     entryNum += 1
-            iterCount += 1
+            nArgs += 1
         
     print('\nPowered by Merriam-Webster.com\nAuthored by brianc2788@gmail.com')
 
