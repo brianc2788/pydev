@@ -72,7 +72,7 @@ def main():
 
 		""" Temp. take down NIC to spoof its MAC & switch to monitor mode. """
 		SysCmd(['ifconfig',iface,'down'],False)
-		SysCmd(['macchanger','-ba',iface],True) # -b is 'burned in addr', -a is any (random mac).
+		SysCmd(['macchanger','-b','-a',iface],True) # -b is 'burned in addr', -a is any (random mac).
 		SysCmd(['iw',iface,'set','type','monitor'],False)
 		SysCmd(['ifconfig',iface,'up'],False)
 
