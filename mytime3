@@ -19,6 +19,7 @@ from os import path
 from sys import exit
 from time import localtime
 from subprocess import getoutput
+from platform import platform
 import pygame
 
 def strSysTime():
@@ -46,7 +47,11 @@ pygame.init()
 pygame.display.set_caption('mytime3')
 basepath = getoutput('which mytime3')
 basepath = path.dirname(basepath)
-path_font = basepath + path.join(path.sep,'resources','fonts','Pixeltype.ttf')
+""" Platform-specific fs format. """
+if 'Windows' in platform():
+    path_font = basepath + path.join('resources','fonts','Pixeltype.ttf')
+else:
+    path_font = basepath + path.join('resources','fonts','Pixeltype.ttf')
 font = pygame.font.Font(path_font,200)
 blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))  #placeholder
 windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
