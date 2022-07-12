@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #-*-coding:utf8;-*-
 #qpy:console
 """
@@ -13,6 +14,10 @@ brianc2788@gmail.com
 http://user5260.github.io
 http://github.com/user5260/pydev
 """
+__author__ = 'http://user5260.github.io, brianc2788@gmail.com'
+__copyright__ = 'Copyright (c) 2022, Brian Chiodo, AKA brianc2788, AKA user5260'
+__license__ = 'Apache License, Version 2.0'
+
 import os,sys
 
 """ Global I/O prompts. """

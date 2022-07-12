@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #-*-coding:utf8;-*-
 #qpy:console
 '''
@@ -10,9 +11,12 @@ may apply.
 authored by brianc2788@gmail.com
 http://www.github.com/user5260
 '''
+__author__ = 'brianc2788@gmail.com, http://user5260.github.io'
+__copyright__ = 'Copyright (c) 2022, Brian Chiodo'
+__license__ = 'Apache License, Version 2.0'
+
 from sys import exit
 from os import path, chdir
-#from os import chdir
 import http.server
 import socketserver
 
