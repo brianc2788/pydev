@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 '''
 clypf
 -----
@@ -9,26 +9,21 @@ Github: http://github.com/user5260
 '''
 import os,sys,pyperclip
 
-""" TODO: Narrow the try block to just where it's needed. """
-try:	
-	if len(sys.argv) == 1:
+try:
+	argCount = len(sys.argv)
+
+	if argCount == 1:
 		print(' Help/Usage:\n',
 			  '$> clypf <file>\n',
 			  'Copies TEXT FILES to the clipboard.')
-
-	elif len(sys.argv) == 2:
-		argPath = sys.argv[1]
-
-		""" Check for abs path """       # Use abspath()?
-		if not os.path.isabs(argPath):
-			argPath = os.path.join(os.getcwd(),argPath)
-
-		""" DEBUG """
-		#print('current dir: '+os.getcwd())
-		#print('target file: '+argPath)
+		sys.exit(0)
+	
+	elif argCount == 2:
+		argPath = os.path.abspath(sys.argv[1])
 
 		if not os.path.isfile(argPath):
 			print('file not found')
+
 		else:
 			fileString = ''
 			with open(argPath,mode='r') as rfile:
@@ -42,14 +37,7 @@ try:
 					pyperclip.copy(fileString[:len(fileString)-1])
 				else:
 					pyperclip.copy(fileString)
-				
-				""" DEBUG output: print a sitrep. """
-				#print('------------------------------\n',
-                #      'COPIED TO CLIPBOARD:\n',
-                #      fileStringF)
-				#print('------------------------------\n',
-                #      'Number of chars copied to the clipboard:\n',
-                #      str(len(fileStringF)))
+	
 	else:
 		print('Invalid input. Clipboard unmodified.')
 except Exception:
