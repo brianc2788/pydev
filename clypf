@@ -37,13 +37,12 @@ try:
 			if fileString == '':
 				print('file not readable')
 			else:
-				fileStringF = ''
-				
 				""" Remove trailing newline(s). """
 				if fileString.endswith('\n'):
-					fileStringF = fileString[:len(fileString)-1]
-				pyperclip.copy(fileStringF)
-
+					pyperclip.copy(fileString[:len(fileString)-1])
+				else:
+					pyperclip.copy(fileString)
+				
 				""" DEBUG output: print a sitrep. """
 				#print('------------------------------\n',
                 #      'COPIED TO CLIPBOARD:\n',
@@ -52,6 +51,6 @@ try:
                 #      'Number of chars copied to the clipboard:\n',
                 #      str(len(fileStringF)))
 	else:
-		print('invalid arg(s). clipboard unmodified.')
+		print('Invalid input. Clipboard unmodified.')
 except Exception:
 	sys.exit()
