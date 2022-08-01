@@ -17,8 +17,9 @@ try:
 			  '$> clypf <file>\n',
 			  'Copies TEXT FILES to the clipboard.')
 		sys.exit(0)
-	
+
 	elif argCount == 2:
+		""" Get abspath, check the target file, read & store contents. """
 		argPath = os.path.abspath(sys.argv[1])
 
 		if not os.path.isfile(argPath):
@@ -26,18 +27,20 @@ try:
 
 		else:
 			fileString = ''
+
 			with open(argPath,mode='r') as rfile:
 				fileString = rfile.read()
 
 			if fileString == '':
 				print('file not readable')
+
 			else:
 				""" Remove trailing newline(s). """
 				if fileString.endswith('\n'):
 					pyperclip.copy(fileString[:len(fileString)-1])
 				else:
 					pyperclip.copy(fileString)
-	
+
 	else:
 		print('Invalid input. Clipboard unmodified.')
 except Exception:
