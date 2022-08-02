@@ -5,26 +5,16 @@ brformat.py
 Description:
 Parse & extract data from "BR" files.
 Create csv file, write header & rows.
--------------------------
-Background:
-Converting "BR" files to csv's will be the first step
-to retiring the format. I created them a long time ago
-with readability exclusively for viewing as plaintext.
-They are very inconsistent and difficult to parse.
-The regex i settled on reflects that - it is
-pretty liberal with what it matches.
-I plan to create something for the user to interface
-with and create new records as csv's. From there,
-it should be easy to convert further to a database
-or spreadsheet format.
+
+Eventually, would like to do away with the plaintext
+BR files. Save data in another format and create a
+plaintext report or spreadsheet at the user's request?
 -------------------------
 Authored by brianc2788@gmail.com
 '''
 import os,sys,re
 
-'''
-Parse cmdline args.
-'''
+""" Parse cmdline args. """
 nArglen = len(sys.argv)
 if nArglen != 2:
 	print("Usage: $ brformat <br-file>")
@@ -35,13 +25,12 @@ else:
 		print("File not found.\nExiting...")
 		sys.exit(1)
 
-'''
-Declare Regex w/groupings. Delimited by any type of single/consecutive whitespace.
-'''
+""" Declare Regex w/groupings. Delimited by whitespace(s). """
+'
 BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
 	(\d+\/\d+)				# Group 1 - Date
 	\s+
-	(\d{1,2}:\d{1,2})		# Group 2 - Time
+	(\d{1,2}:\d{1,2})			# Group 2 - Time
 	\s+
 	(\d)					# Group 3 - B. Recieved
 	\s+
