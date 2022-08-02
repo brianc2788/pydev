@@ -3,7 +3,8 @@
 clypf
 -----
 Copies text from files to your clipboard instance.
-Requires pyperclip.
+Requires pyperclip and a running instance of your
+clipboard (xclipboard, etc).
 Authored by brianc2788@gmail.com
 Github: http://github.com/user5260
 '''
