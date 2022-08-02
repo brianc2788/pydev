@@ -26,7 +26,7 @@ else:
 		sys.exit(1)
 
 """ Declare Regex w/groupings. Delimited by whitespace(s). """
-'
+
 BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
 	(\d+\/\d+)				# Group 1 - Date
 	\s+
