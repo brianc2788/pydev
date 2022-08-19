@@ -10,6 +10,7 @@ the app to pass command-line arguments to python
 modules, so I'm adding a prompt. The user now
 enters their desired word interactively.
 # TODO:
+    - **Still throwing an exception in the try block.**
     - Proper Android app?
     - Android app containing 1 or 2 "Activities" - easy?
     - Use uname or similar to detect OS and take
