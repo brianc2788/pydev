@@ -1,0 +1,19 @@
+# web scraper idea to help with residential wifi pw cracking.
+-------------------------------------------------------------
+[x] create a scraper that searches the web for all 3-to-4 or 5
+	letter words. To be used to generate passwords for cracking
+	default passwords for verizon wifi routers. Afaik, these are
+	usually around 13 chars and contain a pattern as such:
+
+	example: word123words12345words
+
+	could also use crunch.
+	Generate possible pw by creating all possible permutations
+	rather than storing a complete, plaintext wordlist. I once
+	tried to generate all of these with just crunch into such
+	a list and the size of the file to-be was monsterous. Also,
+	maybe rainbow/hash tables.
+
+# idea number two
+-----------------
+[x] details, details, and more details.
