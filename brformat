@@ -11,6 +11,7 @@ BR files. Save data in another format and create a
 plaintext report or spreadsheet at the user's request?
 -------------------------
 Authored by brianc2788@gmail.com
+http://brianc2788.github.io
 '''
 import os,sys,re
 
@@ -26,27 +27,25 @@ else:
 		sys.exit(1)
 
 """ Declare Regex w/groupings. Delimited by whitespace(s). """
-
-BRregex = re.compile(r'''(	# Group 0 - Full line containing the match.
-	(\d+\/\d+)				# Group 1 - Date
+BRregex = re.compile(r'''(				# Group 0 - Full line containing the match.
+	(\d+\/\d+)							# Group 1 - Date
 	\s+
-	(\d{1,2}:\d{1,2})			# Group 2 - Time
+	(\d{1,2}:\d{1,2})					# Group 2 - Time
 	\s+
-	(\d)					# Group 3 - B. Recieved
+	(\d)								# Group 3 - B. Recieved
 	\s+
-	(\d)					# Group 4 - B. Returned
+	(\d)								# Group 4 - B. Returned
 	\s+
-	(LEFT|MID|MIDDLE|RIGHT|NA)		# Group 5 - Window
+	(LEFT|MID|MIDDLE|RIGHT|NA|na)		# Group 5 - Window
 	\s+
-	(.+)					# Group 6 - Details; without passing re.DOTALL, doesnt include newline chars.
+	(.+)								# Group 6 - Details; without passing re.DOTALL, doesnt include newline chars.
 	)''',re.VERBOSE)
 
-'''
-Prepare a list and readlines() from the br file.
-'''
-fileList = []				# list of lines to be read from file.
 
-with open(filename,mode='r') as iFile:
+# Prepare a list and readlines() from the br file.
+fileList = []
+
+with open(filename,mode='rt') as iFile:
 	if not iFile.readable():
 		print('Failed to open file for reading. Aborting execution...')
 		sys.exit(1)
@@ -55,31 +54,35 @@ with open(filename,mode='r') as iFile:
 
 '''
 Create a list a re.match objects. Create a final list object
-made of 
+made of our formatted string.
 '''
 searchList = []
 for line in fileList:
-	if BRregex.search(line) != None:
-		searchList.append(BRregex.search(line))
+	charbuff = BRregex.search(line)
+	if charbuff != None:
+		searchList.append(charbuff)
 
 # Create a final list object to pass to fileObject.writelines().
 writeList = []
 writeList.append("DATE,TIME,BRETURNED,BRECIEVED,WINDOW,DETAILS\n")	# First line of CSV format - table columns.
 
-# Group numbers/indices that we want from the re.match object.
+# Group indices that we want from the re.match object.
 nGroupFirst = 2
 nGroupLast = 8
 
 for matchObj in searchList:
 	csvString = ''
 	for groupnum in range(nGroupFirst,nGroupLast):
-		# Next 2 statements: switch the order of BRECV and BRETRN. A matter of preference.
+		'''
+		# Next 2 statements: switch the order of BRECV and BRETRN. Better flow, imo.
+		# REMOVED: Switched columns in BR files.
 		if groupnum == 4:
 			csvString += matchObj.group(groupnum+1)
 		elif groupnum == 5:
 			csvString += matchObj.group(groupnum-1)
-		elif groupnum == (nGroupLast-1):
-			# Surround with d.quotes. Do for all fields?
+		'''
+		if groupnum == (nGroupLast-1):
+			# Surround with d.quotes in case there is punctuation.
 			csvString += '"'
 			csvString += matchObj.group(groupnum)
 			csvString += '"'
@@ -97,7 +100,7 @@ newFileName = filename[:-3]
 newFileName += 'csv'
 
 # Create/write operation. Will clobber/overwrite existing files with the same name.
-with open(newFileName,mode='w') as fOut:
+with open(newFileName,mode='wt') as fOut:
 	if not fOut.writable():
 		print("Couldn't create/open file for writing. Aborting operations...")
 		sys.exit(1)
