@@ -18,7 +18,7 @@ import requests,sys
 def main():
     """ Print usage if no words/args. """
     if len(sys.argv) == 1:
-        print('USAGE:\n$> lookup <word1> <word2> <...>')
+        print('Usage: $ lookup [word1] [word2] [...]')
     
     else:
         nArgs = 1
@@ -53,7 +53,7 @@ def main():
                     entryNum += 1
             nArgs += 1
         
-    print('\nPowered by Merriam-Webster.com\nAuthored by brianc2788@gmail.com')
+    print('\nPowered by Merriam-Webster.com\nhttp://brianc2788.github.io')
 
 if __name__ == '__main__':
     main()
