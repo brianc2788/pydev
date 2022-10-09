@@ -50,7 +50,7 @@ except Exception:
 booklist2 = formatList(booklist)
 
 """ Create or overwrite booklist.txt text file. """
-with open('booklist.txt',mode='wt') as newfile:
+with open('Books/booklist.txt',mode='wt') as newfile:
     for book in booklist2:
         newfile.write(book)
         newfile.write('\n')
