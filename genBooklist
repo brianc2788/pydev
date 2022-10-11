@@ -9,6 +9,7 @@ http://brianc2788.github.io
 '''
 import os,sys
 
+''' Functions '''
 def parseTitle(book_str):
     title_length = len(book_str)
     new_str = ''
@@ -37,6 +38,7 @@ def formatList(blist):
         new_list.append(new_item)
     return new_list
 
+''' Globs '''
 booklist = []
 
 def main():
