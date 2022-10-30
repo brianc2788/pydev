@@ -1,43 +1,45 @@
 #!/usr/bin/env python3
 '''
 zip-inspect
-
+-----------
 takes a [zip]file argument and displays
 the contents of it.
-not the safest script; mostly for
-actual, practical use & interoperability.
-
-github.com/user5260/pyscripts/zip-inspect
+https://brianc2788.github.io
 '''
 import os,sys,zipfile
 
-if len(sys.argv) != 2:
-	print('Usage: $> zip-inspect <zipfile>')
-	sys.exit()
-else:
-	filearg = sys.argv[1]
-	if not os.path.isfile(filearg):
-		print('file not found.')
-		sys.exit()
-	elif not zipfile.is_zipfile(filearg):
-		print('incorrect file type.')
+def main():
+	if len(sys.argv) != 2:
+		bin_name = os.path.basename(sys.argv[0])
+		print('Usage: $> {0} <zipfile>'.format(bin_name))
 		sys.exit()
 	else:
-		try:
-			zip1 = zipfile.ZipFile(filearg,mode='r')
-			ziplen = len(zip1.namelist())
-			print('Archive contains ',ziplen,' files:\n')
-
-			#loop through contents of zip1.
-			counter = 1
-			for item in zip1.namelist():
-				print(counter,end='')
-				for n in range(8-len(str(counter))):
-					print('-',end='')
-				print('>',item)
-				counter += 1
-			zip1.close()
-		except Exception:
-			print('unexpected error has occurred. aborting task.')
-			zip1.close()
+		filearg = sys.argv[1]
+		if not os.path.isfile(filearg):
+			print('file not found.')
 			sys.exit()
+		elif not zipfile.is_zipfile(filearg):
+			print('incorrect file type.')
+			sys.exit()
+		else:
+			try:
+				zip1 = zipfile.ZipFile(filearg,mode='r')
+				ziplen = len(zip1.namelist())
+				print('Archive contains ',ziplen,' files:\n')
+
+				#loop through contents of zip1.
+				counter = 1
+				for item in zip1.namelist():
+					print(counter,end='')
+					for n in range(8-len(str(counter))):
+						print('-',end='')
+					print('>',item)
+					counter += 1
+				zip1.close()
+			except Exception:
+				print('unexpected error has occurred. aborting task.')
+				zip1.close()
+				sys.exit()
+
+if __name__ == '__main__':
+	main()
