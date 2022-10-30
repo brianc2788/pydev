@@ -1,15 +1,8 @@
 #! /usr/bin/env python3
 '''
-sock_connect_recv
------------------
-demonstrate creation of a
-network socket; some regex for
-good measure. user inputs
-a destination IP that must
-have a service running on
-port 22; preferably ssh (lol).
-
-github.com/user5260/pyscripts/sock_connect_recv
+svcBannerGrabber
+----------------
+hard-coded for ssh at the moment.
 '''
 import re
 import socket
