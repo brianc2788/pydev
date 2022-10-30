@@ -1,23 +1,34 @@
 #! /usr/bin/env python3
 '''
-getMyIP - choose 1 of 2 web API's
-that return a clean string.
------------------------
-Reports your external IP address.
-- Powered by 'http://ip4.top10vpn.com/'
-
-also considered using curl and/or
-the site 'ip4.me/api/'.
+getMyIP
+-------
+http://brianc2788.github.io
 '''
-import sys,requests
+import sys,requests,re
 
-#url1 = 'https://ip4.top10vpn.com/'
-#top10vpn.com stopped working. try http?
+def main():
+	"""
+	ip4.me's API returns a string of comma-separated data.
+	Declare regular expression to isolate the ipv4 address.
+	"""
+	regx = re.compile(r'''(
+		(\d{1,3})			# First 8 bit value of IPv4 address.
+		(\.)				# Dot separator.
+		(\d{1,3})
+		(\.)
+		(\d{1,3})
+		(\.)
+		(\d{1,3})			# Final 8 bits of address.
+		)''', re.VERBOSE)
 
-url2 = 'https://ip4.me/api/'
+	""" API Addresses. """
+	#api_url = 'https://ip4.top10vpn.com/'		# Stopped working?
+	api_url = 'https://ip4.me/api/'
 
-httpRequest = requests.get(url2)
+	""" Get text from response, filter with regx, and print. """
+	api_response = requests.get(api_url)
+	myIPv4 = regx.search(api_response.text)
+	print(myIPv4.group(0))
 
-api_resp = httpRequest.text
-
-print(api_resp)
+if __name__ == '__main__':
+	main()
