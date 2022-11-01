@@ -9,7 +9,7 @@ http://brianc2788.github.io
 import sys,requests
 
 def sendReq(essid):
-	url = 'https://wigle.net/api/'+essid+'/details'
+	url = 'https://api.wigle.net/api/'+essid+'/details'
 
 	#get creds from a file?
 	api_name = ''
@@ -23,7 +23,7 @@ def sendReq(essid):
 		sys.exit(1)
 
 	if req.status_code != 200:
-		print('Request failed: http status code: {0}'.format(req.status_code))
+		print('Request failed; http status code: {0}'.format(req.status_code))
 		sys.exit(0)
 	else:
 		return req.txt
@@ -34,6 +34,7 @@ def main():
 		sys.exit(0)
 
 	resp = sendReq(sys.argv[1])
+	print(resp.text)
 
 	#TODO: Find out what the API returns (json?) & decide how to present it to the user.
 
