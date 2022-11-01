@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+'''
+wigle_getdetails
+----------------
+Use wigle.get API (v2) to get details on a network
+with user-provided wifi ESSID.
+http://brianc2788.github.io
+'''
+import sys,requests
+
+def sendReq(essid):
+	url = 'https://wigle.net/api/'+essid+'/details'
+
+	#get creds from a file?
+	api_name = ''
+	api_token = ''
+
+	try:
+		req = requests.get(url, auth=(api_name,api_token))
+	except Exception:
+		print('Error. Aborting...')
+		sys.exit(1)
+
+	if req.status_code != 200:
+		print('Request failed: http status code: {0}'.format(req.status_code))
+		sys.exit(0)
+	else:
+		return req.txt
+
+def main():
+	if len(sys.argv) < 2:
+		print('Need a wifi network name (ESSID)...')
+		sys.exit(0)
+
+	resp = sendReq(sys.argv[1])
+
+	#TODO: Find out what the API returns (json?) & decide how to present it to the user.
+
+if __name__ == '__main__':
+	main()
