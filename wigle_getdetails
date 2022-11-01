@@ -4,10 +4,14 @@ wigle_getdetails
 ----------------
 Use wigle.get API (v2) to get details on a network
 with user-provided wifi ESSID.
+If this works out nicely, I'll make a new app from
+scratch that parses args & full interacts with the API;
+maybe also go for v3 as 
 http://brianc2788.github.io
 '''
 import sys,requests
 
+""" Send HTTP Request & return response payload. """
 def sendReq(essid):
 	url = 'https://api.wigle.net/api/'+essid+'/details'
 
@@ -15,6 +19,7 @@ def sendReq(essid):
 	api_name = ''
 	api_token = ''
 
+	""" Query API via GET method. """
 	try:
 		# if this doesnt work, try setting header with req.headers[] - refer to wigle docs or rfc2617.
 		req = requests.get(url, auth=(api_name,api_token))
@@ -22,6 +27,7 @@ def sendReq(essid):
 		print('Error. Aborting...')
 		sys.exit(1)
 
+	""" Report any network errors. """
 	if req.status_code != 200:
 		print('Request failed; http status code: {0}'.format(req.status_code))
 		sys.exit(0)
