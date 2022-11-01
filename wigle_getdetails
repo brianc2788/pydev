@@ -16,6 +16,7 @@ def sendReq(essid):
 	api_token = ''
 
 	try:
+		# if this doesnt work, try setting header with req.headers[] - refer to wigle docs or rfc2617.
 		req = requests.get(url, auth=(api_name,api_token))
 	except Exception:
 		print('Error. Aborting...')
