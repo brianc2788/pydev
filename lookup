@@ -7,9 +7,8 @@ from the CLI.
 
 Powered by the Merriam-Webster On-Line Dictionary
 
-Authored by: brianc2788@gmail.com
-http://www.github.com/user5260
-http://user5260.github.io
+brianc2788@gmail.com
+http://brianc2788.github.io
 '''
 from bs4 import BeautifulSoup
 import requests,sys
