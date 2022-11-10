@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+'''
+massfrename
+-----------
+Quick & Dirty script to quickly rename a mass of files.
+http://brianc2788.github.io/
+'''
+import os,subprocess
+
+def main():
+	#TODO
+
+if __name__ == '__main__':
+	main()
