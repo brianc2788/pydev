@@ -9,9 +9,9 @@ to take input rather than parse sys-
 tem arguments. other design choices
 may apply.
 authored by brianc2788@gmail.com
-http://www.github.com/user5260
+http://brianc2788.github.io/
 '''
-__author__ = 'brianc2788@gmail.com, http://user5260.github.io'
+__author__ = 'brianc2788@gmail.com, http://brianc2788.github.io'
 __copyright__ = 'Copyright (c) 2022, Brian Chiodo'
 __license__ = 'Apache License, Version 2.0'
 
