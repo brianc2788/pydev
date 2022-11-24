@@ -16,7 +16,7 @@ def readCreds(path_creds):
 
 """ Send HTTP Request & return response payload. """
 def sendReq(essid):
-	url = 'https://api.wigle.net/api/v2/'+essid+'/details'
+	url = f'https://api.wigle.net/api/v2/{essid}/details'
 
 	creds_ascii = b''
 	creds_ascii = readCreds()
