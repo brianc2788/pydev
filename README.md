@@ -1,11 +1,13 @@
 <!--
-Markdown document from user5260's "pydev" repository.
-github.com/user5260/pydev
+http://brianc2788.github.io/
 -->
 ## How to use this repository ##
 #### ***Subdirectories (Folders)*** ####
-Contain larger projects and their resources.
+Contain projects of Python modules and their resources.
+*Using Python version 3.6.x or greater.*
 
 #### ***Individual Files*** ####
-Python source files.  
-*Note: If a file doesn't have an extension, it is an executable python program with the necessary hashbang.*
+Python source files.
+Small Python scripts where productivity trumps all-else. Because these
+are *not* modules, they have to be run by the Python REPL or, on unix,
+just run the file as-is.
