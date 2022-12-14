@@ -25,14 +25,24 @@ def usage():
 
 """ Returns True or False based on primality of input (int). """
 def isPrime(numIn):
-	p = True
+	try:
+		p = True
 
-	if numIn <= 1:
-		return False
+		if numIn <= 1:
+			return False
 
-	for n in range(2,numIn):
-		if numIn % n == 0:
-			p = False
+		for n in range(2,numIn):
+			if numIn % n == 0:
+				p = False
+	except BaseException:
+		'''
+		If we recieve an interrupt signal (e.g. SIGINT, SIGHUP),
+		print the current iterable and return an error.
+		'''
+		if KeyboardInterrupt:
+			print(n)
+		print()
+		sys.exit(1)
 
 	return p
 
