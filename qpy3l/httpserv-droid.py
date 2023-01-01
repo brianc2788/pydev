@@ -20,6 +20,7 @@ from os import path, chdir
 import http.server
 import socketserver
 
+# Android doesn't allow binding to port numbers below 1024.
 port = 8000
 rhandler = http.server.SimpleHTTPRequestHandler
 
