@@ -16,7 +16,7 @@ __copyright__ = 'Copyright (c) 2022, Brian Chiodo'
 __license__ = 'Apache License, Version 2.0'
 
 from sys import exit
-from os import path, chdir
+from os import path, chdir, getcwd
 import http.server
 import socketserver
 
@@ -34,7 +34,7 @@ server = socketserver.TCPServer(
 I don't much like this setup, but I really
 wanted to use a python while loop. thanks.
 '''
-rdir = '/storage/emulated/0/'
+rdir = getcwd()
 tdir = ''
 fdir = ''
 
@@ -54,6 +54,9 @@ try:
     server.serve_forever()
 except BaseException:
     if KeyboardInterrupt:
+        print('\nShutdown requested by user...')
+        server.server_close()
+        print('Server closed. Exiting...')
         exit(0)
     else:
         print('an error has occurred. exiting...')
