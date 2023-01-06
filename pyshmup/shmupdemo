@@ -17,10 +17,13 @@ import eng1
 
 def main():
     e1 = eng1.Engine1('shmup1 demo',640,480)
-    fighterpath = os.path.join(os.getcwd(),'art','fighter1.png')
+    fighterpath = os.path.join('art','fighter1.png')
+    enemypath = os.path.join('art','enemy_sm_01.png')
     img1 = e1.makeImg(fighterpath)
+    img2 = e1.makeImg(enemypath)
     #img1 = pygame.image.load(fighterpath).convert()
     e1.screen.blit(img1,(0,0))
+    e1.screen.blit(img2,(64,0))
     e1.updateScreen()
     input('press ENTER to continue...\n')
     e1.quitPygame()

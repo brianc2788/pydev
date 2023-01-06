@@ -37,49 +37,56 @@ def strSysTime():
         timeString += ':'+str(currentT.tm_sec)
     return timeString
 
-""" Pygame - init and create some glob vars. """
-pygame.init()
-pygame.display.set_caption('mytime3')
-#basepath = getoutput('which mytime3')
-#basepath = path.dirname(basepath)
-basepath = getcwd()
-
-""" Platform-specific fs format. """
-if 'Windows' in platform():
-    path_font = path.join(basepath, 'resources','fonts','Pixeltype.ttf')
-else:
-    path_font = path.join(basepath,'resources','fonts','Pixeltype.ttf')
-font = pygame.font.Font(path_font,200)
-blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))  #placeholder
-windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
-appclock = pygame.time.Clock()
-currentTime = ''
-
-""" Main loop """
-bRun = 1
-try:
-    while bRun:
-        """ Event loop - get queue and check for quit. """
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                bRun = 0
-                break
-
-        """ Call strSysTime(), render, clear, blit, update. """
-        currentTime = strSysTime()
-        timeSurf = font.render(currentTime,False,(255,255,255),(0,0,0)).convert()
-        windowSurface.blit(blankSurf,(0,0))
-        windowSurface.blit(timeSurf,(0,0))
-        pygame.display.update()
-        appclock.tick(25)     #Update 25x per second; same as old PAL format.
-
-except BaseException:
-    if KeyboardInterrupt:
-        pygame.quit()
-        exit(0)
+def main():
+    """ Pygame - init and create some glob vars. """
+    pygame.init()
+    pygame.display.set_caption('mytime3')
+    basepath = getcwd()
+    '''Intended for cross-platform pathing, but ended up completely redundant.**
+    #basepath = getoutput('which mytime3')
+    #basepath = path.dirname(basepath)
+    '''
+    if 'Windows' in platform():
+        path_font = path.join(basepath, 'resources','fonts','Pixeltype.ttf')
     else:
-        pygame.quit()
-        print(f'Caught an exception. Stack Trace, coming up:\n{e}')
-        exit(0)
+        path_font = path.join(basepath, 'resources','fonts','Pixeltype.ttf')
 
-pygame.quit()
+    font = pygame.font.Font(path_font,200)
+    blankSurf = font.render('_______________',False,(0,0,0),(0,0,0))  #placeholder for blanking the screen.
+    windowSurface = pygame.display.set_mode((font.size(strSysTime()+' ')))
+    ''' Tried constant screen width but failed due to variable-width font. Char for "1" is the main issue.
+    windowSurface = pygame.display.set_mode((460, 100))
+    '''
+    appclock = pygame.time.Clock()
+    currentTime = ''
+
+    """ Main loop """
+    bRun = 1
+    try:
+        while bRun:
+            """ Event loop - get queue and check for quit. """
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    bRun = 0
+
+            """ Call strSysTime(), render, clear, blit, update. """
+            currentTime = strSysTime()
+            timeSurf = font.render(currentTime,False,(255,255,255),(0,0,0)).convert()
+            windowSurface.blit(blankSurf,(0,0))
+            windowSurface.blit(timeSurf,(0,0))
+            pygame.display.update()
+            appclock.tick(25)     #Update 25x per second; same as old PAL format.
+
+    except BaseException as e:
+        if KeyboardInterrupt:
+            pygame.quit()
+            exit(0)
+        else:
+            pygame.quit()
+            print(f'Caught an exception.\n{e}')
+            exit(0)
+
+    pygame.quit()
+
+if __name__ == '__main__':
+    main()
