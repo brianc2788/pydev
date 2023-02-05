@@ -51,9 +51,8 @@ def main():
     Will redo from scratch using better practices and setuptools at a later date.
     '''
     if 'Windows' in platform():
-        basepath = getoutput('where mytime3') # If this script stops working on Windows, remove this line and uncomment the following one.
-        #basepath = getcwd()
-        path_font = path.join(basepath, 'resources','fonts','Pixeltype.ttf')
+        basepath = getoutput('where mytime3')
+        path_font = path.join(path.dirname(basepath), 'resources','fonts','Pixeltype.ttf')
     else:
         if path.islink(getoutput('which mytime3')):
             basepath = getoutput('which mytime3')
