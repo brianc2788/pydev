@@ -11,7 +11,7 @@ http://brianc2788.github.io
 from bs4 import BeautifulSoup
 import requests,sys
 
-""" Print credits before exit. """
+""" Print credits. """
 def printCredits():
     print('Powered by Merriam-Webster.com\nhttps://brianc2788.github.io/')
 
@@ -27,8 +27,8 @@ def printDef(strWord):
     # Soupify; create soup object & designate the python built-in html parser.
     soup = BeautifulSoup(req.text,'html.parser')
 
-    # Create list of CSS class attributes
-    # Tag is <span class="dtText"><\span>
+    # Create list of text from CSS selector.
+    # Get innerText from tag <span class="dtText"><\span>
     resultList = soup.select('.dtText')
 
     # Print the word & its definition(s).
